@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* ─── Custom Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+html { scroll-behavior: smooth; }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Seamless Infinite Marquee ────────────────────────── */
+/*
+  The trick: two identical sets of items side by side.
+  We translate from 0 → -50% so the second copy is always ready.
+  overflow: hidden on the parent clips everything outside.
+*/
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes ticker-scroll-slow {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Stock ticker — slow and smooth (90s for one full loop) */
+.ticker-track {
+  display: flex;
+  width: max-content;          /* must be wider than the viewport */
+  animation: ticker-scroll 90s linear infinite;
+  will-change: transform;
+}
+
+/* News ticker — very slow and readable (150s for one full loop) */
+.ticker-track-slow {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll-slow 150s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover — both rows */
+.ticker-pause:hover .ticker-track-slow {
+  animation-play-state: paused;
+}
+
+.ticker-row:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* ─── Pulse Glow ───────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ─── Ticker Row Base ──────────────────────────────────── */
+.ticker-row {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* fade edges */
+.ticker-row::before,
+.ticker-row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  z-index: 10;
+  pointer-events: none;
+}
+.ticker-row::before {
+  left: 0;
+  background: linear-gradient(to right, #020617, transparent);
+}
+.ticker-row::after {
+  right: 0;
+  background: linear-gradient(to left, #020617, transparent);
+}
