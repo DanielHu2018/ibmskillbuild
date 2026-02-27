@@ -85,9 +85,9 @@ export function AuthPage({ onAuth }: AuthPageProps) {
                 <span className="text-xs font-semibold text-green-400 uppercase tracking-wider">Institutional-Grade AI Risk Engine</span>
               </div>
               
-              <h1 className="text-6xl md:text-7xl font-black text-white leading-tight" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>
+              <h1 className="text-6xl md:text-7xl font-black text-white leading-tight" style={{ fontFamily: 'Times New Roman' }}>
                 The New Risk<br />
-                <span className="bg-gradient-to-r from-zinc-300 to-white bg-clip-text text-transparent">Operating System</span>
+                <span className="bg-gradient-to-r from-zinc-300 to-white bg-clip-text text-transparent" style={{ fontFamily: 'Times New Roman' }}>Operating System</span>
               </h1>
               
               <p className="text-zinc-200 text-lg leading-relaxed max-w-3xl mx-auto" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,1)' }}>
@@ -298,7 +298,7 @@ export function AuthPage({ onAuth }: AuthPageProps) {
   return (
     <div className="flex h-screen w-screen bg-black overflow-hidden">
       {/* Left Panel — Auth Form */}
-      <div className="flex flex-1 items-center justify-center p-8 relative border-r border-zinc-900">
+      <div className="flex flex-1 items-center justify-center p-8 relative">
         {/* Back Button */}
         <button
           onClick={() => setShowAuthForm(false)}
@@ -431,12 +431,12 @@ export function AuthPage({ onAuth }: AuthPageProps) {
       <div className="hidden lg:flex lg:w-1/2 flex-col justify-between items-end p-12 bg-gradient-to-br from-zinc-950 via-black to-zinc-950">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center">
-            <img src="/blackhole-icon.svg" alt="CLARA Logo" className="w-full h-full" />
-          </div>
-          <div>
+          <div className="text-right">
             <div className="text-lg font-black tracking-wide text-white" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>CLARA</div>
             <div className="text-[10px] font-semibold tracking-widest text-zinc-500 uppercase">Clairvoyant Loss Avoidance & Risk Advisor</div>
+          </div>
+          <div className="flex h-10 w-10 items-center justify-center">
+            <img src="/blackhole-icon.svg" alt="CLARA Logo" className="w-full h-full" />
           </div>
         </div>
 

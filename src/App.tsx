@@ -16,6 +16,7 @@ import { SimulationPage } from '@/pages/SimulationPage';
 import { AlertsPage } from '@/pages/AlertsPage';
 import { AuditTrailPage } from '@/pages/AuditTrailPage';
 import { SystemHealthPage } from '@/pages/SystemHealthPage';
+import { TenKAnalysisPage } from '@/pages/TenKAnalysisPage';
 import { getCurrentSession, signOut, type AuthSession } from '@/auth/authStore';
 
 const tabComponents: Record<string, React.ComponentType<{ setActiveTab?: (tab: string) => void }>> = {
@@ -26,6 +27,7 @@ const tabComponents: Record<string, React.ComponentType<{ setActiveTab?: (tab: s
   'Regime Analysis':    RegimeAnalysisPage,
   'Historical Analogs': HistoricalAnalogsPage,
   'Simulation':         SimulationPage,
+  '10-K Analysis':      TenKAnalysisPage,
   'Alerts':             AlertsPage,
   'Audit Trail':        AuditTrailPage,
   'System Health':      SystemHealthPage,

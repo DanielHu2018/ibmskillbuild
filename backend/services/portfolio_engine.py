@@ -4,10 +4,10 @@ Core portfolio analytics:
   - Position enrichment with live prices
   - Price target computation (sell target, stop loss, trailing stop, bull case)
   - P&L calculation
-  - VaR / Expected Shortfall
+  - VaR / Expected Shortfall (Enhanced with multiple distributions)
   - Risk contributor ranking
   - Buy recommendations
-  - Monte Carlo simulation
+  - Monte Carlo simulation (Enhanced with distribution selection)
 """
 
 import math
@@ -17,9 +17,11 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from models.schemas import (
     EnrichedPosition, PortfolioPosition, PortfolioSummary,
-    BuyRecommendation, RiskLevel, VaRResult, MonteCarloResult, RiskContributor
+    BuyRecommendation, RiskLevel, VaRResult, MonteCarloResult, RiskContributor,
+    VaRConfig, DistributionType
 )
 from services.stock_data import COMPANY_META
+from services.var_calculator import var_calculator
 
 logger = logging.getLogger("CLARA.portfolio_engine")
 

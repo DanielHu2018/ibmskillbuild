@@ -27,6 +27,7 @@ from routers import (
     simulation,
     audit,
     system_health,
+    ten_k_risks,
 )
 from services.alert_agent import alert_agent
 from config import settings
@@ -87,6 +88,7 @@ app.include_router(analogs.router,       prefix="/api/analogs",     tags=["Histo
 app.include_router(simulation.router,    prefix="/api/simulation",  tags=["Monte Carlo"])
 app.include_router(audit.router,         prefix="/api/audit",       tags=["Audit Trail"])
 app.include_router(system_health.router, prefix="/api/health",      tags=["System Health"])
+app.include_router(ten_k_risks.router,   prefix="/api/10k",         tags=["10-K Analysis"])
 
 
 # ── Root ───────────────────────────────────────────────────────────────────────

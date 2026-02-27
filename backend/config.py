@@ -6,7 +6,7 @@ Copy .env.example to .env and fill in your keys.
 
 from pydantic_settings import BaseSettings
 from functools import lru_cache
-from typing import Optional
+from typing import Optional, List
 
 
 class Settings(BaseSettings):
@@ -58,7 +58,24 @@ class Settings(BaseSettings):
     ALERT_COOLDOWN_HOURS: int = 4           # minimum hours between same alerts
     MAX_PORTFOLIO_POSITIONS: int = 100
     MONTE_CARLO_PATHS: int = 10_000         # 10k default, up to 100k for production
-    VAR_CONFIDENCE_LEVEL: float = 0.95
+    
+    # ── VaR/ES Configuration ──────────────────────────────────────────────────
+    VAR_CONFIDENCE_LEVELS: List[float] = [0.90, 0.95, 0.99]
+    ES_CONFIDENCE_LEVELS: List[float] = [0.95, 0.99]
+    VAR_TIME_HORIZONS: List[int] = [1, 10]  # days
+    
+    # ── Distribution Settings ─────────────────────────────────────────────────
+    DISTRIBUTION_MODEL: str = "auto"  # auto | normal | student_t | lognormal | exponential
+    ALLOW_MANUAL_DISTRIBUTION_OVERRIDE: bool = True
+    
+    # ── SEC EDGAR ─────────────────────────────────────────────────────────────
+    SEC_EDGAR_USER_AGENT: str = "Clara-RiskPlatform contact@yourdomain.com"
+    SEC_EDGAR_BASE_URL: str = "https://data.sec.gov"
+    SEC_EDGAR_RATE_LIMIT: int = 10  # requests per second
+    
+    # ── Cap IQ (Phase 2 - Placeholder) ───────────────────────────────────────
+    CAPIQ_API_KEY: Optional[str] = None
+    CAPIQ_ENABLED: bool = False
 
     class Config:
         env_file = ".env"

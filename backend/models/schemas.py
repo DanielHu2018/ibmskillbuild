@@ -5,7 +5,7 @@ All request/response shapes for the API.
 
 from pydantic import BaseModel, Field, EmailStr, validator
 from typing import Optional, List, Dict, Any
-from datetime import datetime
+from datetime import datetime, date
 from enum import Enum
 
 
@@ -47,6 +47,20 @@ class EmailProvider(str, Enum):
     SENDGRID = "sendgrid"
     SMTP     = "smtp"
     EMAILJS  = "emailjs"
+
+
+class COSOCategory(str, Enum):
+    STRATEGIC = "strategic"
+    OPERATIONAL = "operational"
+    FINANCIAL = "financial"
+    COMPLIANCE = "compliance"
+
+
+class DistributionType(str, Enum):
+    NORMAL = "normal"
+    LOGNORMAL = "lognormal"
+    STUDENT_T = "student_t"
+    EXPONENTIAL = "exponential"
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -409,3 +423,161 @@ class SystemHealthResponse(BaseModel):
     alerts_today: int
     av_requests_today: int
     av_daily_limit: int
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 10-K RISK ANALYSIS
+# ══════════════════════════════════════════════════════════════════════════════
+
+class TenKRiskFactor(BaseModel):
+    risk_id: str
+    company_ticker: str
+    filing_date: date
+    fiscal_year: int
+    risk_text: str
+    section_reference: Dict[str, Any] = Field(default_factory=dict)
+    coso_classifications: List[str] = Field(default_factory=list)
+    likelihood: float = Field(ge=0.0, le=1.0, default=0.5)
+    impact: float = Field(ge=0.0, le=1.0, default=0.5)
+    is_new_risk: bool = False
+    watson_enhanced_text: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class TenKFiling(BaseModel):
+    ticker: str
+    cik: str
+    accession_number: str
+    filing_date: date
+    fiscal_year: int
+    fiscal_period: str
+    document_url: str
+    item_1a_text: Optional[str] = None
+    parsed_at: Optional[datetime] = None
+
+
+class TenKAnalysisRequest(BaseModel):
+    ticker: str
+    year: Optional[int] = None
+    use_watson_enhancement: bool = True
+
+
+class TenKComparisonRequest(BaseModel):
+    ticker: str
+    year1: int
+    year2: int
+
+
+class TenKComparisonResult(BaseModel):
+    ticker: str
+    year1: int
+    year2: int
+    new_risks: List[TenKRiskFactor]
+    removed_risks: List[TenKRiskFactor]
+    changed_risks: List[Dict[str, Any]]
+    summary: str
+
+
+class HeatMapPoint(BaseModel):
+    risk_id: str
+    x: float  # likelihood
+    y: float  # impact
+    label: str
+    coso_category: str
+    severity: str  # low | medium | high
+    risk_text: str
+
+
+class HeatMapData(BaseModel):
+    ticker: str
+    points: List[HeatMapPoint]
+    zones: Dict[str, int]  # count by severity
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ENHANCED VAR/ES CONFIGURATION
+# ══════════════════════════════════════════════════════════════════════════════
+
+class VaRConfig(BaseModel):
+    confidence_levels: List[float] = Field(default=[0.90, 0.95, 0.99])
+    time_horizons: List[int] = Field(default=[1, 10])
+    distribution: DistributionType = DistributionType.NORMAL
+    use_watson_recommendation: bool = True
+
+
+class VaRResult(BaseModel):
+    confidence_level: float
+    time_horizon: int
+    var_amount: float
+    es_amount: Optional[float] = None
+    distribution_used: str
+    percentile: float
+
+
+class MultiVaRResult(BaseModel):
+    portfolio_id: str
+    calculation_time: datetime = Field(default_factory=datetime.utcnow)
+    results: List[VaRResult]
+    distribution_recommendation: Optional[Dict[str, Any]] = None
+    statistical_tests: Optional[Dict[str, Any]] = None
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SENSITIVITY ANALYSIS
+# ══════════════════════════════════════════════════════════════════════════════
+
+class SensitivityFactor(BaseModel):
+    factor_name: str
+    base_value: float
+    perturbation_range: float = 0.20  # ±20%
+
+
+class SensitivityResult(BaseModel):
+    factor_name: str
+    base_var: float
+    low_var: float  # -perturbation
+    high_var: float  # +perturbation
+    impact_range: float
+    impact_pct: float
+
+
+class TornadoDiagramData(BaseModel):
+    portfolio_id: str
+    factors: List[SensitivityResult]
+    base_var: float
+    sorted_by_impact: bool = True
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# BREACH MONITORING
+# ══════════════════════════════════════════════════════════════════════════════
+
+class BreachThreshold(BaseModel):
+    metric: str  # var_95, var_99, es_95, etc.
+    threshold: float
+    enabled: bool = True
+
+
+class BreachEvent(BaseModel):
+    breach_id: str
+    portfolio_id: str
+    timestamp: datetime
+    metric: str
+    threshold: float
+    actual_value: float
+    severity: str
+    acknowledged: bool = False
+
+
+class BreachMonitorConfig(BaseModel):
+    portfolio_id: str
+    thresholds: List[BreachThreshold]
+    notification_enabled: bool = True
+    notification_emails: List[EmailStr] = Field(default_factory=list)
+
+
+class BreachHistory(BaseModel):
+    portfolio_id: str
+    total_breaches: int
+    breaches: List[BreachEvent]
+    date_range: Dict[str, date]

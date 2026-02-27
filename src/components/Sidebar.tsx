@@ -2,7 +2,7 @@ import { cn } from '@/utils/cn';
 import {
   Activity, AlertTriangle, BarChart3, Brain,
   LineChart, FileText, History, LayoutDashboard,
-  Radio, Shield, TrendingDown, Zap, LogOut,
+  Radio, Shield, TrendingDown, Zap, LogOut, FileSearch,
 } from 'lucide-react';
 import type { AuthSession } from '@/auth/authStore';
 
@@ -16,6 +16,7 @@ const navItems = [
   { icon: Brain,           label: 'Regime Analysis' },
   { icon: History,         label: 'Historical Analogs' },
   { icon: BarChart3,       label: 'Simulation' },
+  { icon: FileSearch,      label: '10-K Analysis' },
   { icon: AlertTriangle,   label: 'Alerts', badge: 4 },
   { icon: FileText,        label: 'Audit Trail' },
   { icon: Activity,        label: 'System Health' },
