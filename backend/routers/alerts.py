@@ -1,5 +1,5 @@
 """
-NARRA — Alert Agent Router
+CLARA — Alert Agent Router
 
 GET    /api/alerts/config
 PUT    /api/alerts/config

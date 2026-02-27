@@ -88,7 +88,7 @@ const alerts = [
 const severityConfig = {
   critical: { bg: 'bg-red-950/30 border-red-900/50', icon: XCircle, iconColor: 'text-red-400', badge: 'bg-red-500/20 text-red-400', label: 'CRITICAL' },
   warning: { bg: 'bg-amber-950/20 border-amber-900/50', icon: AlertTriangle, iconColor: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-400', label: 'WARNING' },
-  info: { bg: 'bg-blue-950/20 border-blue-900/50', icon: Bell, iconColor: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-400', label: 'INFO' },
+  info: { bg: 'bg-black/20 border-zinc-900/50', icon: Bell, iconColor: 'text-zinc-400', badge: 'bg-amber-600/20 text-zinc-400', label: 'INFO' },
 };
 
 export function AlertsPage() {
@@ -101,10 +101,10 @@ export function AlertsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">Alert & Breach Management</h2>
-          <p className="text-xs text-slate-500 mt-0.5">VaR, ES, and limit breach detection with automated escalation workflows</p>
+          <p className="text-xs text-zinc-500 mt-0.5">VaR, ES, and limit breach detection with automated escalation workflows</p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800 transition-colors cursor-pointer">
+          <button className="flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-black px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-800 transition-colors cursor-pointer">
             <CheckCircle size={13} />
             Acknowledge All
           </button>
@@ -114,24 +114,24 @@ export function AlertsPage() {
       {/* Summary Cards */}
       <div className="grid grid-cols-5 gap-3">
         <div className="rounded-lg border border-red-900/50 bg-red-950/20 px-3 py-2.5">
-          <div className="text-[10px] text-slate-500 uppercase">Critical</div>
+          <div className="text-[10px] text-zinc-500 uppercase">Critical</div>
           <div className="text-2xl font-bold font-mono text-red-400 mt-0.5">{criticalCount}</div>
         </div>
         <div className="rounded-lg border border-amber-900/50 bg-amber-950/20 px-3 py-2.5">
-          <div className="text-[10px] text-slate-500 uppercase">Warning</div>
+          <div className="text-[10px] text-zinc-500 uppercase">Warning</div>
           <div className="text-2xl font-bold font-mono text-amber-400 mt-0.5">{warningCount}</div>
         </div>
-        <div className="rounded-lg border border-blue-900/50 bg-blue-950/20 px-3 py-2.5">
-          <div className="text-[10px] text-slate-500 uppercase">Info</div>
-          <div className="text-2xl font-bold font-mono text-blue-400 mt-0.5">{alerts.length - criticalCount - warningCount}</div>
+        <div className="rounded-lg border border-zinc-900/50 bg-black/20 px-3 py-2.5">
+          <div className="text-[10px] text-zinc-500 uppercase">Info</div>
+          <div className="text-2xl font-bold font-mono text-zinc-400 mt-0.5">{alerts.length - criticalCount - warningCount}</div>
         </div>
-        <div className="rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2.5">
-          <div className="text-[10px] text-slate-500 uppercase">Unacknowledged</div>
+        <div className="rounded-lg border border-zinc-800 bg-black/50 px-3 py-2.5">
+          <div className="text-[10px] text-zinc-500 uppercase">Unacknowledged</div>
           <div className="text-2xl font-bold font-mono text-white mt-0.5">{unackCount}</div>
         </div>
-        <div className="rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2.5">
-          <div className="text-[10px] text-slate-500 uppercase">Total Active</div>
-          <div className="text-2xl font-bold font-mono text-cyan-400 mt-0.5">{alerts.length}</div>
+        <div className="rounded-lg border border-zinc-800 bg-black/50 px-3 py-2.5">
+          <div className="text-[10px] text-zinc-500 uppercase">Total Active</div>
+          <div className="text-2xl font-bold font-mono text-orange-400 mt-0.5">{alerts.length}</div>
         </div>
       </div>
 
@@ -144,10 +144,10 @@ export function AlertsPage() {
         <div className="grid grid-cols-3 gap-3">
           {portfolioImpact.filter(p => p.breached).map(item => (
             <div key={item.metric} className="rounded-lg border border-red-900/30 bg-red-950/30 px-3 py-2.5">
-              <div className="text-[10px] text-slate-500 uppercase">{item.metric}</div>
+              <div className="text-[10px] text-zinc-500 uppercase">{item.metric}</div>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-lg font-bold font-mono text-red-400">{item.stressed}M</span>
-                <span className="text-[10px] text-slate-600">/ {item.limit}M limit</span>
+                <span className="text-[10px] text-zinc-600">/ {item.limit}M limit</span>
               </div>
               <div className="flex items-center gap-1 mt-1 text-red-400 text-[10px]">
                 <TrendingUp size={10} />
@@ -159,7 +159,7 @@ export function AlertsPage() {
       </div>
 
       {/* Alert List */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+      <div className="rounded-xl border border-zinc-800 bg-black/50 p-5">
         <h3 className="text-sm font-semibold text-white mb-3">All Active Alerts</h3>
         <div className="space-y-2">
           {alerts.map(alert => {
@@ -171,24 +171,24 @@ export function AlertsPage() {
                   <Icon size={16} className={cn('mt-0.5 shrink-0', config.iconColor)} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[10px] font-mono text-slate-600">{alert.id}</span>
+                      <span className="text-[10px] font-mono text-zinc-600">{alert.id}</span>
                       <span className={cn('rounded-full px-2 py-0.5 text-[9px] font-bold uppercase', config.badge)}>{config.label}</span>
                       {alert.acknowledged && (
-                        <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[9px] font-semibold text-emerald-400">ACK</span>
+                        <span className="rounded-full bg-orange-500/15 px-2 py-0.5 text-[9px] font-semibold text-orange-400">ACK</span>
                       )}
                     </div>
                     <h4 className="text-sm font-semibold text-white">{alert.title}</h4>
-                    <p className="text-[11px] text-slate-400 mt-1">{alert.detail}</p>
-                    <div className="mt-2 flex items-center gap-4 text-[10px] text-slate-500">
+                    <p className="text-[11px] text-zinc-400 mt-1">{alert.detail}</p>
+                    <div className="mt-2 flex items-center gap-4 text-[10px] text-zinc-500">
                       <span className="flex items-center gap-1"><Clock size={10} /> {alert.timestamp}</span>
                       <span className="flex items-center gap-1"><Shield size={10} /> {alert.source}</span>
                     </div>
-                    <div className="mt-2 text-[10px] text-cyan-400">
+                    <div className="mt-2 text-[10px] text-orange-400">
                       Action: {alert.action}
                     </div>
                   </div>
                   {!alert.acknowledged && (
-                    <button className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1 text-[10px] text-slate-300 hover:bg-slate-700 transition-colors cursor-pointer shrink-0">
+                    <button className="rounded-lg border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-[10px] text-zinc-300 hover:bg-zinc-700 transition-colors cursor-pointer shrink-0">
                       Acknowledge
                     </button>
                   )}

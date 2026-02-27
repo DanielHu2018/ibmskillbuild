@@ -1,5 +1,5 @@
 """
-NARRA — Alpha Vantage Service (Python)
+CLARA — Alpha Vantage Service (Python)
 Full async implementation of the Alpha Vantage REST API.
 
 Endpoints covered:
@@ -22,7 +22,7 @@ import httpx
 
 from config import settings
 
-logger = logging.getLogger("narra.alpha_vantage")
+logger = logging.getLogger("CLARA.alpha_vantage")
 
 BASE_URL = settings.ALPHA_VANTAGE_BASE_URL
 _rate_counter: Dict[str, int] = {}   # date_str → request count

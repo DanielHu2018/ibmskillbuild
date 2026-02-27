@@ -1,4 +1,4 @@
-"""NARRA — Risk Engine Router (stubs — expand with full quant library)"""
+"""CLARA — Risk Engine Router (stubs — expand with full quant library)"""
 import random
 from fastapi import APIRouter
 from datetime import datetime, timedelta

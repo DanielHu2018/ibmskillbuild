@@ -13,17 +13,18 @@ import {
 
 export function MonteCarloChart() {
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+    <div className="rounded-xl border border-zinc-800 bg-black/50 p-4">
       <div className="mb-3 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-white">Monte Carlo Distribution (100K paths)</h3>
         <div className="flex items-center gap-3 text-[10px]">
           <span className="text-red-400">■ Tail (&lt;5%)</span>
           <span className="text-amber-400">■ Adverse</span>
-          <span className="text-cyan-400">■ Core</span>
+          <span className="text-orange-400">■ Core</span>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={180}>
-        <BarChart data={monteCarloDistribution} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
+      <div className="bg-zinc-900/50 rounded-lg p-2">
+        <ResponsiveContainer width="100%" height={180}>
+          <BarChart data={monteCarloDistribution} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
           <XAxis dataKey="bin" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={{ stroke: '#334155' }} tickLine={false} />
           <YAxis tick={{ fontSize: 10, fill: '#64748b' }} axisLine={{ stroke: '#334155' }} tickLine={false} />
@@ -43,6 +44,7 @@ export function MonteCarloChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 }

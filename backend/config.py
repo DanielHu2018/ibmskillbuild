@@ -1,5 +1,5 @@
 """
-NARRA Configuration
+CLARA Configuration
 All API keys and settings loaded from environment variables / .env file.
 Copy .env.example to .env and fill in your keys.
 """
@@ -30,8 +30,8 @@ class Settings(BaseSettings):
 
     # ── SendGrid (for server-side email) ─────────────────────────────────────
     SENDGRID_API_KEY: str = "your_sendgrid_key_here"
-    SENDGRID_FROM_EMAIL: str = "narra@yourdomain.com"
-    SENDGRID_FROM_NAME: str = "NARRA Alert Agent"
+    SENDGRID_FROM_EMAIL: str = "CLARA@yourdomain.com"
+    SENDGRID_FROM_NAME: str = "CLARA Alert Agent"
 
     # ── SMTP Fallback ────────────────────────────────────────────────────────
     SMTP_HOST: str = "smtp.gmail.com"

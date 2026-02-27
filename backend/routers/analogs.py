@@ -1,4 +1,4 @@
-"""NARRA — Historical Analogs Router"""
+"""CLARA — Historical Analogs Router"""
 from fastapi import APIRouter
 router = APIRouter()
 

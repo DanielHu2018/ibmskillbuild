@@ -384,7 +384,7 @@ export async function fetchAVNews(
 }
 
 // ── Rate Limit Tracker ────────────────────────────────────────────────────────
-const RATE_KEY = 'narra_av_rate';
+const RATE_KEY = 'CLARA_av_rate';
 
 export interface AVRateStatus {
   requestsToday: number;

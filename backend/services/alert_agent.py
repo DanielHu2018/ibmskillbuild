@@ -1,5 +1,5 @@
 """
-NARRA — AI Alert Agent (Python / Server-Side)
+CLARA — AI Alert Agent (Python / Server-Side)
 Background service that continuously monitors portfolio positions
 against their computed price targets and fires email alerts.
 
@@ -24,7 +24,7 @@ from models.schemas import AlertConfig, AlertLogEntry, AlertType, InAppAlert, Al
 from services.email_service import send_alert_email
 from services.stock_data import get_quotes_batch
 
-logger = logging.getLogger("narra.alert_agent")
+logger = logging.getLogger("CLARA.alert_agent")
 
 
 def _severity(alert_type: AlertType) -> AlertSeverity:

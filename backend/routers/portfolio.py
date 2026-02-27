@@ -1,5 +1,5 @@
 """
-NARRA — Portfolio Router
+CLARA — Portfolio Router
 Full CRUD for portfolio positions + analytics endpoints.
 
 GET    /api/portfolio/positions
@@ -36,7 +36,7 @@ from services.portfolio_engine import (
 )
 from services.alert_agent import alert_agent
 
-logger = logging.getLogger("narra.portfolio")
+logger = logging.getLogger("CLARA.portfolio")
 router = APIRouter()
 
 # ── In-memory position store (replace with DB in production) ──────────────────

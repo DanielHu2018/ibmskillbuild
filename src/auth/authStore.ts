@@ -1,5 +1,5 @@
 /**
- * NARRA — Auth Store
+ * CLARA — Auth Store
  * Simple localStorage-backed auth system.
  * Passwords are hashed with SHA-256 (browser-native).
  */
@@ -21,8 +21,8 @@ export interface AuthSession {
   loginAt: string;
 }
 
-const USERS_KEY = 'narra_users_v1';
-const SESSION_KEY = 'narra_session_v1';
+const USERS_KEY = 'CLARA_users_v1';
+const SESSION_KEY = 'CLARA_session_v1';
 
 const AVATAR_COLORS = [
   '#3b82f6', '#8b5cf6', '#10b981', '#f59e0b',
@@ -31,7 +31,7 @@ const AVATAR_COLORS = [
 
 async function hashPassword(pw: string): Promise<string> {
   const encoder = new TextEncoder();
-  const data = encoder.encode(pw + 'narra_salt_2024');
+  const data = encoder.encode(pw + 'CLARA_salt_2024');
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');

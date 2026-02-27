@@ -1,5 +1,5 @@
 /**
- * NARRA — Settings Modal
+ * CLARA — Settings Modal
  * System configuration: API keys, thresholds, display, notifications.
  */
 import { useState } from 'react';
@@ -27,43 +27,43 @@ interface ApiKey {
 const DEFAULT_API_KEYS: ApiKey[] = [
   {
     id: 'av', label: 'Alpha Vantage', envVar: 'VITE_ALPHA_VANTAGE_API_KEY',
-    value: localStorage.getItem('narra_av_key') || '',
+    value: localStorage.getItem('CLARA_av_key') || '',
     hint: 'Free tier: 25 requests/day. Used for live stock quotes.',
     icon: Database, docsUrl: 'https://www.alphavantage.co/support/#api-key',
   },
   {
     id: 'td', label: 'Twelve Data', envVar: 'VITE_TWELVEDATA_API_KEY',
-    value: localStorage.getItem('narra_td_key') || '',
+    value: localStorage.getItem('CLARA_td_key') || '',
     hint: 'Free tier: 800 requests/day. Backup price source.',
     icon: Globe, docsUrl: 'https://twelvedata.com/pricing',
   },
   {
     id: 'fh', label: 'Finnhub', envVar: 'VITE_FINNHUB_API_KEY',
-    value: localStorage.getItem('narra_fh_key') || '',
+    value: localStorage.getItem('CLARA_fh_key') || '',
     hint: 'Free tier: 60 req/min. Real-time quotes and news.',
     icon: Globe, docsUrl: 'https://finnhub.io/dashboard',
   },
   {
     id: 'news', label: 'NewsAPI', envVar: 'VITE_NEWSAPI_KEY',
-    value: localStorage.getItem('narra_news_key') || '',
+    value: localStorage.getItem('CLARA_news_key') || '',
     hint: 'Free tier: 100 requests/day. News feed and sentiment.',
     icon: Globe, docsUrl: 'https://newsapi.org/register',
   },
   {
     id: 'ejs_svc', label: 'EmailJS Service ID', envVar: 'VITE_EMAILJS_SERVICE_ID',
-    value: localStorage.getItem('narra_ejs_svc') || '',
+    value: localStorage.getItem('CLARA_ejs_svc') || '',
     hint: 'Your EmailJS email service identifier.',
     icon: Cpu, docsUrl: 'https://www.emailjs.com/docs/',
   },
   {
     id: 'ejs_tpl', label: 'EmailJS Template ID', envVar: 'VITE_EMAILJS_TEMPLATE_ID',
-    value: localStorage.getItem('narra_ejs_tpl') || '',
+    value: localStorage.getItem('CLARA_ejs_tpl') || '',
     hint: 'Your EmailJS email template identifier.',
     icon: Cpu, docsUrl: 'https://www.emailjs.com/docs/',
   },
   {
     id: 'ejs_pub', label: 'EmailJS Public Key', envVar: 'VITE_EMAILJS_PUBLIC_KEY',
-    value: localStorage.getItem('narra_ejs_pub') || '',
+    value: localStorage.getItem('CLARA_ejs_pub') || '',
     hint: 'Your EmailJS account public key.',
     icon: Cpu, docsUrl: 'https://www.emailjs.com/docs/',
   },
@@ -87,34 +87,34 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
 
   // Risk limit state
   const [limits, setLimits] = useState({
-    var95: localStorage.getItem('narra_lim_var95') || '25',
-    var99: localStorage.getItem('narra_lim_var99') || '65',
-    es:    localStorage.getItem('narra_lim_es')    || '40',
-    tail:  localStorage.getItem('narra_lim_tail')  || '5',
+    var95: localStorage.getItem('CLARA_lim_var95') || '25',
+    var99: localStorage.getItem('CLARA_lim_var99') || '65',
+    es:    localStorage.getItem('CLARA_lim_es')    || '40',
+    tail:  localStorage.getItem('CLARA_lim_tail')  || '5',
   });
 
   // Display state
   const [display, setDisplay] = useState({
-    theme:       localStorage.getItem('narra_theme')   || 'dark',
-    mcPaths:     localStorage.getItem('narra_mc')      || '100000',
-    refreshRate: localStorage.getItem('narra_refresh') || '30',
-    compactMode: localStorage.getItem('narra_compact') === 'true',
+    theme:       localStorage.getItem('CLARA_theme')   || 'dark',
+    mcPaths:     localStorage.getItem('CLARA_mc')      || '100000',
+    refreshRate: localStorage.getItem('CLARA_refresh') || '30',
+    compactMode: localStorage.getItem('CLARA_compact') === 'true',
   });
 
   // Alert prefs
   const [alertPrefs, setAlertPrefs] = useState({
-    emailOnBreach: localStorage.getItem('narra_alert_breach') !== 'false',
-    emailOnCycle:  localStorage.getItem('narra_alert_cycle')  === 'true',
-    emailOnRegime: localStorage.getItem('narra_alert_regime') === 'true',
-    slackWebhook:  localStorage.getItem('narra_slack')        || '',
+    emailOnBreach: localStorage.getItem('CLARA_alert_breach') !== 'false',
+    emailOnCycle:  localStorage.getItem('CLARA_alert_cycle')  === 'true',
+    emailOnRegime: localStorage.getItem('CLARA_alert_regime') === 'true',
+    slackWebhook:  localStorage.getItem('CLARA_slack')        || '',
   });
 
   // Model config
   const [modelConf, setModelConf] = useState({
-    confidenceThreshold: localStorage.getItem('narra_conf_thresh') || '50',
-    analogCount:         localStorage.getItem('narra_analog_n')    || '5',
-    regimeEnsemble:      localStorage.getItem('narra_ensemble')    !== 'false',
-    safeMode:            localStorage.getItem('narra_safe_mode')   !== 'false',
+    confidenceThreshold: localStorage.getItem('CLARA_conf_thresh') || '50',
+    analogCount:         localStorage.getItem('CLARA_analog_n')    || '5',
+    regimeEnsemble:      localStorage.getItem('CLARA_ensemble')    !== 'false',
+    safeMode:            localStorage.getItem('CLARA_safe_mode')   !== 'false',
   });
 
   function toggleReveal(id: string) {
@@ -132,34 +132,34 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
   function saveAll() {
     // Save API keys
     const storageMap: Record<string, string> = {
-      av: 'narra_av_key', td: 'narra_td_key', fh: 'narra_fh_key',
-      news: 'narra_news_key', ejs_svc: 'narra_ejs_svc', ejs_tpl: 'narra_ejs_tpl', ejs_pub: 'narra_ejs_pub',
+      av: 'CLARA_av_key', td: 'CLARA_td_key', fh: 'CLARA_fh_key',
+      news: 'CLARA_news_key', ejs_svc: 'CLARA_ejs_svc', ejs_tpl: 'CLARA_ejs_tpl', ejs_pub: 'CLARA_ejs_pub',
     };
     apiKeys.forEach(k => { if (k.value) localStorage.setItem(storageMap[k.id], k.value); });
 
     // Save limits
-    localStorage.setItem('narra_lim_var95', limits.var95);
-    localStorage.setItem('narra_lim_var99', limits.var99);
-    localStorage.setItem('narra_lim_es',    limits.es);
-    localStorage.setItem('narra_lim_tail',  limits.tail);
+    localStorage.setItem('CLARA_lim_var95', limits.var95);
+    localStorage.setItem('CLARA_lim_var99', limits.var99);
+    localStorage.setItem('CLARA_lim_es',    limits.es);
+    localStorage.setItem('CLARA_lim_tail',  limits.tail);
 
     // Save display
-    localStorage.setItem('narra_theme',   display.theme);
-    localStorage.setItem('narra_mc',      display.mcPaths);
-    localStorage.setItem('narra_refresh', display.refreshRate);
-    localStorage.setItem('narra_compact', String(display.compactMode));
+    localStorage.setItem('CLARA_theme',   display.theme);
+    localStorage.setItem('CLARA_mc',      display.mcPaths);
+    localStorage.setItem('CLARA_refresh', display.refreshRate);
+    localStorage.setItem('CLARA_compact', String(display.compactMode));
 
     // Save alert prefs
-    localStorage.setItem('narra_alert_breach', String(alertPrefs.emailOnBreach));
-    localStorage.setItem('narra_alert_cycle',  String(alertPrefs.emailOnCycle));
-    localStorage.setItem('narra_alert_regime', String(alertPrefs.emailOnRegime));
-    localStorage.setItem('narra_slack',         alertPrefs.slackWebhook);
+    localStorage.setItem('CLARA_alert_breach', String(alertPrefs.emailOnBreach));
+    localStorage.setItem('CLARA_alert_cycle',  String(alertPrefs.emailOnCycle));
+    localStorage.setItem('CLARA_alert_regime', String(alertPrefs.emailOnRegime));
+    localStorage.setItem('CLARA_slack',         alertPrefs.slackWebhook);
 
     // Save model config
-    localStorage.setItem('narra_conf_thresh', modelConf.confidenceThreshold);
-    localStorage.setItem('narra_analog_n',    modelConf.analogCount);
-    localStorage.setItem('narra_ensemble',    String(modelConf.regimeEnsemble));
-    localStorage.setItem('narra_safe_mode',   String(modelConf.safeMode));
+    localStorage.setItem('CLARA_conf_thresh', modelConf.confidenceThreshold);
+    localStorage.setItem('CLARA_analog_n',    modelConf.analogCount);
+    localStorage.setItem('CLARA_ensemble',    String(modelConf.regimeEnsemble));
+    localStorage.setItem('CLARA_safe_mode',   String(modelConf.safeMode));
 
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -167,30 +167,30 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="relative w-[720px] max-h-[85vh] rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl shadow-black/60 flex flex-col overflow-hidden">
+      <div className="relative w-[720px] max-h-[85vh] rounded-2xl border border-zinc-700 bg-black shadow-2xl shadow-black/60 flex flex-col overflow-hidden">
 
         {/* Top accent */}
-        <div className="h-1 w-full bg-gradient-to-r from-purple-600 via-cyan-500 to-blue-600 shrink-0" />
+        <div className="h-1 w-full bg-gradient-to-r from-purple-600 via-orange-500 to-orange-800 shrink-0" />
 
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800 border border-slate-700">
-              <Settings size={16} className="text-slate-300" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-800 border border-zinc-700">
+              <Settings size={16} className="text-zinc-300" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">NARRA System Settings</div>
-              <div className="text-[10px] text-slate-500">API keys, risk limits, display preferences, model configuration</div>
+              <div className="text-sm font-bold text-white">CLARA System Settings</div>
+              <div className="text-[10px] text-zinc-500">API keys, risk limits, display preferences, model configuration</div>
             </div>
           </div>
-          <button onClick={onClose} className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-800 hover:text-white transition-colors">
+          <button onClick={onClose} className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-800 hover:text-white transition-colors">
             <X size={14} />
           </button>
         </div>
 
         <div className="flex flex-1 overflow-hidden">
           {/* Left nav */}
-          <div className="w-44 border-r border-slate-800 p-3 space-y-1 shrink-0">
+          <div className="w-44 border-r border-zinc-800 p-3 space-y-1 shrink-0">
             {TABS.map(t => (
               <button
                 key={t.key}
@@ -198,8 +198,8 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                 className={cn(
                   'w-full flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-xs font-medium transition-all text-left',
                   activeTab === t.key
-                    ? 'bg-cyan-950/40 border border-cyan-800/40 text-cyan-300'
-                    : 'text-slate-500 hover:bg-slate-800/60 hover:text-slate-300'
+                    ? 'bg-orange-950/40 border border-orange-800/40 text-orange-300'
+                    : 'text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300'
                 )}
               >
                 <t.icon size={13} />
@@ -214,23 +214,23 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
             {/* ── API KEYS ── */}
             {activeTab === 'api' && (
               <div className="space-y-4">
-                <div className="rounded-xl border border-blue-900/40 bg-blue-950/15 px-4 py-3 flex items-start gap-3">
-                  <Key size={13} className="text-blue-400 mt-0.5 shrink-0" />
-                  <div className="text-[11px] text-blue-300 leading-relaxed">
+                <div className="rounded-xl border border-zinc-900/40 bg-zinc-950/15 px-4 py-3 flex items-start gap-3">
+                  <Key size={13} className="text-zinc-400 mt-0.5 shrink-0" />
+                  <div className="text-[11px] text-zinc-300 leading-relaxed">
                     Keys saved here are stored in your browser's <strong>localStorage</strong> and used at runtime.
-                    For production, add them to your <code className="bg-slate-800 rounded px-1">.env</code> file instead.
+                    For production, add them to your <code className="bg-zinc-800 rounded px-1">.env</code> file instead.
                   </div>
                 </div>
                 <div className="space-y-3">
                   {apiKeys.map(key => (
-                    <div key={key.id} className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                    <div key={key.id} className="rounded-xl border border-zinc-800 bg-black/50 p-4">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <key.icon size={13} className="text-slate-500" />
+                          <key.icon size={13} className="text-zinc-500" />
                           <span className="text-xs font-bold text-white">{key.label}</span>
-                          <code className="text-[10px] text-purple-400 bg-slate-800 rounded px-1.5 py-0.5">{key.envVar}</code>
+                          <code className="text-[10px] text-purple-400 bg-zinc-800 rounded px-1.5 py-0.5">{key.envVar}</code>
                         </div>
-                        {key.value && <CheckCircle size={13} className="text-emerald-400" />}
+                        {key.value && <CheckCircle size={13} className="text-orange-400" />}
                       </div>
                       <div className="flex gap-2">
                         <div className="relative flex-1">
@@ -239,19 +239,19 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                             value={key.value}
                             onChange={e => updateApiKey(key.id, e.target.value)}
                             placeholder={`Enter ${key.label} key…`}
-                            className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 pr-9 py-2 text-xs font-mono text-slate-200 placeholder-slate-600 focus:border-cyan-600 focus:outline-none transition-colors"
+                            className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 pr-9 py-2 text-xs font-mono text-zinc-200 placeholder-zinc-600 focus:border-orange-600 focus:outline-none transition-colors"
                           />
                           <button
                             onClick={() => toggleReveal(key.id)}
-                            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-400 transition-colors"
+                            className="absolute right-2.5 top-1/2 -tranzinc-y-1/2 text-zinc-600 hover:text-zinc-400 transition-colors"
                           >
                             {revealed.has(key.id) ? <EyeOff size={12} /> : <Eye size={12} />}
                           </button>
                         </div>
                       </div>
                       <div className="flex items-center justify-between mt-2">
-                        <p className="text-[10px] text-slate-600">{key.hint}</p>
-                        <a href={key.docsUrl} target="_blank" rel="noreferrer" className="text-[10px] text-cyan-600 hover:text-cyan-400 transition-colors">
+                        <p className="text-[10px] text-zinc-600">{key.hint}</p>
+                        <a href={key.docsUrl} target="_blank" rel="noreferrer" className="text-[10px] text-orange-600 hover:text-orange-400 transition-colors">
                           Get key →
                         </a>
                       </div>
@@ -264,8 +264,8 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
             {/* ── RISK LIMITS ── */}
             {activeTab === 'thresholds' && (
               <div className="space-y-4">
-                <p className="text-[11px] text-slate-500 leading-relaxed">
-                  Configure breach thresholds. When simulated risk metrics exceed these limits, NARRA fires alerts
+                <p className="text-[11px] text-zinc-500 leading-relaxed">
+                  Configure breach thresholds. When simulated risk metrics exceed these limits, CLARA fires alerts
                   and triggers escalation workflows.
                 </p>
                 {[
@@ -274,7 +274,7 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                   { key: 'es',    label: 'Expected Shortfall Limit', unit: '$M', min: 1, max: 500 },
                   { key: 'tail',  label: 'Tail Loss Probability Limit', unit: '%', min: 1, max: 25 },
                 ].map(lim => (
-                  <div key={lim.key} className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                  <div key={lim.key} className="rounded-xl border border-zinc-800 bg-black/50 p-4">
                     <div className="flex items-center justify-between mb-3">
                       <label className="text-xs font-bold text-white">{lim.label}</label>
                       <span className="text-sm font-mono font-bold text-amber-400">
@@ -286,9 +286,9 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                       min={lim.min} max={lim.max}
                       value={limits[lim.key as keyof typeof limits]}
                       onChange={e => setLimits(prev => ({ ...prev, [lim.key]: e.target.value }))}
-                      className="w-full accent-cyan-500"
+                      className="w-full accent-orange-500"
                     />
-                    <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+                    <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
                       <span>{lim.unit === '$M' ? `$${lim.min}M` : `${lim.min}%`}</span>
                       <span>{lim.unit === '$M' ? `$${lim.max}M` : `${lim.max}%`}</span>
                     </div>
@@ -307,10 +307,10 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
             {activeTab === 'display' && (
               <div className="space-y-4">
                 {/* MC Paths */}
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                <div className="rounded-xl border border-zinc-800 bg-black/50 p-4">
                   <div className="flex items-center justify-between mb-3">
                     <label className="text-xs font-bold text-white">Monte Carlo Paths</label>
-                    <span className="text-sm font-mono font-bold text-cyan-400">{Number(display.mcPaths).toLocaleString()}</span>
+                    <span className="text-sm font-mono font-bold text-orange-400">{Number(display.mcPaths).toLocaleString()}</span>
                   </div>
                   <div className="flex gap-2">
                     {['10000','50000','100000','500000'].map(v => (
@@ -320,8 +320,8 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                         className={cn(
                           'flex-1 rounded-lg border py-2 text-[11px] font-bold transition-all',
                           display.mcPaths === v
-                            ? 'border-cyan-600 bg-cyan-950/30 text-cyan-300'
-                            : 'border-slate-700 bg-slate-800 text-slate-500 hover:border-slate-600'
+                            ? 'border-orange-600 bg-orange-950/30 text-orange-300'
+                            : 'border-zinc-700 bg-zinc-800 text-zinc-500 hover:border-zinc-600'
                         )}
                       >
                         {Number(v).toLocaleString()}
@@ -331,10 +331,10 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                 </div>
 
                 {/* Refresh Rate */}
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                <div className="rounded-xl border border-zinc-800 bg-black/50 p-4">
                   <div className="flex items-center justify-between mb-3">
                     <label className="text-xs font-bold text-white">Price Refresh Rate</label>
-                    <span className="text-sm font-mono font-bold text-cyan-400">{display.refreshRate}s</span>
+                    <span className="text-sm font-mono font-bold text-orange-400">{display.refreshRate}s</span>
                   </div>
                   <div className="flex gap-2">
                     {['15','30','60','300'].map(v => (
@@ -344,8 +344,8 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                         className={cn(
                           'flex-1 rounded-lg border py-2 text-[11px] font-bold transition-all',
                           display.refreshRate === v
-                            ? 'border-cyan-600 bg-cyan-950/30 text-cyan-300'
-                            : 'border-slate-700 bg-slate-800 text-slate-500 hover:border-slate-600'
+                            ? 'border-orange-600 bg-orange-950/30 text-orange-300'
+                            : 'border-zinc-700 bg-zinc-800 text-zinc-500 hover:border-zinc-600'
                         )}
                       >
                         {v === '300' ? '5m' : `${v}s`}
@@ -355,21 +355,21 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                 </div>
 
                 {/* Compact Mode */}
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4 flex items-center justify-between">
+                <div className="rounded-xl border border-zinc-800 bg-black/50 p-4 flex items-center justify-between">
                   <div>
                     <div className="text-xs font-bold text-white">Compact Mode</div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">Reduce padding and font sizes for more data density</div>
+                    <div className="text-[10px] text-zinc-500 mt-0.5">Reduce padding and font sizes for more data density</div>
                   </div>
                   <button
                     onClick={() => setDisplay(p => ({ ...p, compactMode: !p.compactMode }))}
                     className={cn(
                       'relative h-6 w-11 rounded-full transition-colors',
-                      display.compactMode ? 'bg-cyan-600' : 'bg-slate-700'
+                      display.compactMode ? 'bg-orange-600' : 'bg-zinc-700'
                     )}
                   >
                     <span className={cn(
                       'absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform',
-                      display.compactMode ? 'translate-x-5' : 'translate-x-0.5'
+                      display.compactMode ? 'tranzinc-x-5' : 'tranzinc-x-0.5'
                     )} />
                   </button>
                 </div>
@@ -381,40 +381,40 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
               <div className="space-y-4">
                 {[
                   { key: 'emailOnBreach', label: 'Email on Limit Breach', desc: 'Send email when VaR/ES limits are exceeded' },
-                  { key: 'emailOnCycle',  label: 'Email on Cycle Complete', desc: 'Summary email after each NARRA cycle' },
+                  { key: 'emailOnCycle',  label: 'Email on Cycle Complete', desc: 'Summary email after each CLARA cycle' },
                   { key: 'emailOnRegime', label: 'Email on Regime Change', desc: 'Alert when market regime transitions' },
                 ].map(pref => (
-                  <div key={pref.key} className="rounded-xl border border-slate-800 bg-slate-900/50 p-4 flex items-center justify-between">
+                  <div key={pref.key} className="rounded-xl border border-zinc-800 bg-black/50 p-4 flex items-center justify-between">
                     <div>
                       <div className="text-xs font-bold text-white">{pref.label}</div>
-                      <div className="text-[10px] text-slate-500 mt-0.5">{pref.desc}</div>
+                      <div className="text-[10px] text-zinc-500 mt-0.5">{pref.desc}</div>
                     </div>
                     <button
                       onClick={() => setAlertPrefs(p => ({ ...p, [pref.key]: !p[pref.key as keyof typeof alertPrefs] }))}
                       className={cn(
                         'relative h-6 w-11 rounded-full transition-colors',
-                        alertPrefs[pref.key as keyof typeof alertPrefs] ? 'bg-cyan-600' : 'bg-slate-700'
+                        alertPrefs[pref.key as keyof typeof alertPrefs] ? 'bg-orange-600' : 'bg-zinc-700'
                       )}
                     >
                       <span className={cn(
                         'absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform',
-                        alertPrefs[pref.key as keyof typeof alertPrefs] ? 'translate-x-5' : 'translate-x-0.5'
+                        alertPrefs[pref.key as keyof typeof alertPrefs] ? 'tranzinc-x-5' : 'tranzinc-x-0.5'
                       )} />
                     </button>
                   </div>
                 ))}
 
                 {/* Slack Webhook */}
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                <div className="rounded-xl border border-zinc-800 bg-black/50 p-4">
                   <label className="text-xs font-bold text-white mb-2 block">Slack Webhook URL</label>
                   <input
                     type="text"
                     value={alertPrefs.slackWebhook}
                     onChange={e => setAlertPrefs(p => ({ ...p, slackWebhook: e.target.value }))}
                     placeholder="https://hooks.slack.com/services/..."
-                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-mono text-slate-200 placeholder-slate-600 focus:border-cyan-600 focus:outline-none transition-colors"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-xs font-mono text-zinc-200 placeholder-zinc-600 focus:border-orange-600 focus:outline-none transition-colors"
                   />
-                  <p className="text-[10px] text-slate-600 mt-2">Optional. Sends breach and cycle alerts to your Slack channel.</p>
+                  <p className="text-[10px] text-zinc-600 mt-2">Optional. Sends breach and cycle alerts to your Slack channel.</p>
                 </div>
               </div>
             )}
@@ -423,7 +423,7 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
             {activeTab === 'model' && (
               <div className="space-y-4">
                 {/* Confidence Threshold */}
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                <div className="rounded-xl border border-zinc-800 bg-black/50 p-4">
                   <div className="flex items-center justify-between mb-3">
                     <label className="text-xs font-bold text-white">Confidence Threshold (Safe Mode trigger)</label>
                     <span className="text-sm font-mono font-bold text-purple-400">{modelConf.confidenceThreshold}%</span>
@@ -434,13 +434,13 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                     onChange={e => setModelConf(p => ({ ...p, confidenceThreshold: e.target.value }))}
                     className="w-full accent-purple-500"
                   />
-                  <p className="text-[10px] text-slate-600 mt-2">
-                    If model confidence drops below this, NARRA enters Safe Mode and freezes hedge suggestions.
+                  <p className="text-[10px] text-zinc-600 mt-2">
+                    If model confidence drops below this, CLARA enters Safe Mode and freezes hedge suggestions.
                   </p>
                 </div>
 
                 {/* Analog Count */}
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                <div className="rounded-xl border border-zinc-800 bg-black/50 p-4">
                   <div className="flex items-center justify-between mb-3">
                     <label className="text-xs font-bold text-white">Historical Analog Count (Top N)</label>
                     <span className="text-sm font-mono font-bold text-purple-400">Top {modelConf.analogCount}</span>
@@ -454,7 +454,7 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                           'flex-1 rounded-lg border py-2 text-[11px] font-bold transition-all',
                           modelConf.analogCount === v
                             ? 'border-purple-600 bg-purple-950/30 text-purple-300'
-                            : 'border-slate-700 bg-slate-800 text-slate-500 hover:border-slate-600'
+                            : 'border-zinc-700 bg-zinc-800 text-zinc-500 hover:border-zinc-600'
                         )}
                       >
                         Top {v}
@@ -468,39 +468,39 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                   { key: 'regimeEnsemble', label: 'Regime Ensemble Model', desc: 'Use ensemble of 3 regime classifiers to reduce misclassification risk' },
                   { key: 'safeMode',       label: 'Safe Mode Enabled',     desc: 'Freeze hedge suggestions when model confidence is below threshold' },
                 ].map(opt => (
-                  <div key={opt.key} className="rounded-xl border border-slate-800 bg-slate-900/50 p-4 flex items-center justify-between">
+                  <div key={opt.key} className="rounded-xl border border-zinc-800 bg-black/50 p-4 flex items-center justify-between">
                     <div>
                       <div className="text-xs font-bold text-white">{opt.label}</div>
-                      <div className="text-[10px] text-slate-500 mt-0.5">{opt.desc}</div>
+                      <div className="text-[10px] text-zinc-500 mt-0.5">{opt.desc}</div>
                     </div>
                     <button
                       onClick={() => setModelConf(p => ({ ...p, [opt.key]: !p[opt.key as keyof typeof modelConf] }))}
                       className={cn(
                         'relative h-6 w-11 rounded-full transition-colors',
-                        modelConf[opt.key as keyof typeof modelConf] ? 'bg-purple-600' : 'bg-slate-700'
+                        modelConf[opt.key as keyof typeof modelConf] ? 'bg-purple-600' : 'bg-zinc-700'
                       )}
                     >
                       <span className={cn(
                         'absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform',
-                        modelConf[opt.key as keyof typeof modelConf] ? 'translate-x-5' : 'translate-x-0.5'
+                        modelConf[opt.key as keyof typeof modelConf] ? 'tranzinc-x-5' : 'tranzinc-x-0.5'
                       )} />
                     </button>
                   </div>
                 ))}
 
-                <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-4 space-y-2">
-                  <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2">Current Model Info</div>
+                <div className="rounded-xl border border-zinc-800 bg-black/30 p-4 space-y-2">
+                  <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider mb-2">Current Model Info</div>
                   {[
                     { label: 'LLM', value: 'IBM Granite 13B Instruct' },
                     { label: 'Embedding Store', value: 'Custom FAISS Index' },
                     { label: 'Regime Classifier', value: 'Ensemble (RF + XGB + MLP)' },
                     { label: 'MC Engine', value: 'Numba-accelerated (CPU)' },
                     { label: 'Governance', value: 'IBM OpenScale + Watson Audit' },
-                    { label: 'Version', value: 'NARRA v2.4.1' },
+                    { label: 'Version', value: 'CLARA v2.4.1' },
                   ].map(r => (
-                    <div key={r.label} className="flex justify-between text-[11px] border-b border-slate-800/50 pb-1.5">
-                      <span className="text-slate-500">{r.label}</span>
-                      <span className="text-slate-300 font-mono">{r.value}</span>
+                    <div key={r.label} className="flex justify-between text-[11px] border-b border-zinc-800/50 pb-1.5">
+                      <span className="text-zinc-500">{r.label}</span>
+                      <span className="text-zinc-300 font-mono">{r.value}</span>
                     </div>
                   ))}
                 </div>
@@ -510,7 +510,7 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-slate-800 shrink-0 bg-slate-950">
+        <div className="flex items-center justify-between px-6 py-4 border-t border-zinc-800 shrink-0 bg-black">
           <button
             onClick={() => {
               if (confirm('Reset all settings to defaults?')) {
@@ -518,12 +518,12 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
                 window.location.reload();
               }
             }}
-            className="flex items-center gap-1.5 text-xs text-slate-600 hover:text-red-400 transition-colors"
+            className="flex items-center gap-1.5 text-xs text-zinc-600 hover:text-red-400 transition-colors"
           >
             <RefreshCw size={12} /> Reset all defaults
           </button>
           <div className="flex items-center gap-2">
-            <button onClick={onClose} className="rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-xs text-slate-400 hover:text-slate-200 transition-colors">
+            <button onClick={onClose} className="rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-xs text-zinc-400 hover:text-zinc-200 transition-colors">
               Cancel
             </button>
             <button
@@ -531,8 +531,8 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
               className={cn(
                 'flex items-center gap-1.5 rounded-lg border px-5 py-2 text-xs font-bold transition-all',
                 saved
-                  ? 'border-emerald-700 bg-emerald-950/40 text-emerald-300'
-                  : 'border-cyan-700 bg-cyan-950/40 hover:bg-cyan-900/50 text-cyan-300'
+                  ? 'border-orange-700 bg-orange-950/40 text-orange-300'
+                  : 'border-orange-700 bg-orange-950/40 hover:bg-orange-900/50 text-orange-300'
               )}
             >
               {saved ? <><CheckCircle size={12} /> Saved!</> : <><Save size={12} /> Save Changes</>}

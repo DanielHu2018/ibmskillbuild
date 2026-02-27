@@ -1,5 +1,5 @@
 /**
- * NARRA — News Service
+ * CLARA — News Service
  * Fetches financial news from NewsAPI + Alpha Vantage News Sentiment.
  * Falls back to curated realistic mock news if APIs unavailable.
  */
@@ -185,5 +185,5 @@ export async function fetchNews(): Promise<{ items: NewsItem[]; source: string }
   if (naItems.length >= 5) return { items: naItems, source: 'NewsAPI' };
 
   // Fall back to realistic mock
-  return { items: getMockNews(), source: 'NARRA Curated Feed' };
+  return { items: getMockNews(), source: 'CLARA Curated Feed' };
 }

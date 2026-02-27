@@ -12,19 +12,20 @@ import {
 
 export function VaRChart() {
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+    <div className="rounded-xl border border-zinc-800 bg-black/50 p-4">
       <div className="mb-3 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-white">VaR / ES Intraday Trajectory</h3>
         <div className="flex items-center gap-3 text-[10px]">
-          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-cyan-500" /> VaR 95%</span>
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-orange-500" /> VaR 95%</span>
           <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-purple-500" /> VaR 99%</span>
           <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-amber-500" /> ES</span>
           <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-red-500" /> Limit</span>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={220}>
-        <AreaChart data={varTimeSeries} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
-          <defs>
+      <div className="bg-zinc-900/50 rounded-lg p-2">
+        <ResponsiveContainer width="100%" height={220}>
+          <AreaChart data={varTimeSeries} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
+            <defs>
             <linearGradient id="varGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3} />
               <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
@@ -47,6 +48,7 @@ export function VaRChart() {
           <Area type="monotone" dataKey="var95" stroke="#06b6d4" strokeWidth={2} fill="url(#varGrad)" dot={false} />
         </AreaChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 }

@@ -1,13 +1,13 @@
 """
-NARRA — Narrative Risk Reasoning Agent
+CLARA — Narrative Risk Reasoning Agent
 FastAPI Python Backend
 
 Run with:
     uvicorn main:app --reload --port 8000
 
 Or via Docker:
-    docker build -t narra-backend .
-    docker run -p 8000:8000 narra-backend
+    docker build -t CLARA-backend .
+    docker run -p 8000:8000 CLARA-backend
 """
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks
@@ -36,18 +36,18 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
-logger = logging.getLogger("narra")
+logger = logging.getLogger("CLARA")
 
 
 # ── Lifespan ───────────────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Start background tasks on startup, clean up on shutdown."""
-    logger.info("🚀 NARRA Backend starting up...")
+    logger.info("🚀 CLARA Backend starting up...")
     # Start the alert monitoring agent
     task = asyncio.create_task(alert_agent.run_monitoring_loop())
     yield
-    logger.info("🛑 NARRA Backend shutting down...")
+    logger.info("🛑 CLARA Backend shutting down...")
     task.cancel()
     try:
         await task
@@ -57,10 +57,10 @@ async def lifespan(app: FastAPI):
 
 # ── App ────────────────────────────────────────────────────────────────────────
 app = FastAPI(
-    title="NARRA — Narrative Risk Reasoning Agent",
+    title="CLARA — Narrative Risk Reasoning Agent",
     description=(
         "Autonomous institutional scenario engine. "
-        "Real-time narrative-to-factor translation, regime-aware simulation, "
+        "Real-time Narrative-to-factor translation, regime-aware simulation, "
         "autonomous hedge optimization, and governance-native design."
     ),
     version="1.0.0",
@@ -93,7 +93,7 @@ app.include_router(system_health.router, prefix="/api/health",      tags=["Syste
 @app.get("/", tags=["Root"])
 async def root():
     return {
-        "system": "NARRA",
+        "system": "CLARA",
         "version": "1.0.0",
         "status": "operational",
         "docs": "/docs",

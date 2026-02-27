@@ -1,5 +1,5 @@
 """
-NARRA — Portfolio Engine (Python)
+CLARA — Portfolio Engine (Python)
 Core portfolio analytics:
   - Position enrichment with live prices
   - Price target computation (sell target, stop loss, trailing stop, bull case)
@@ -21,7 +21,7 @@ from models.schemas import (
 )
 from services.stock_data import COMPANY_META
 
-logger = logging.getLogger("narra.portfolio_engine")
+logger = logging.getLogger("CLARA.portfolio_engine")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

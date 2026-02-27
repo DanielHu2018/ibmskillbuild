@@ -1,4 +1,4 @@
-"""NARRA — Simulation Router"""
+"""CLARA — Simulation Router"""
 from fastapi import APIRouter, Query
 from services.portfolio_engine import run_monte_carlo
 from models.schemas import EnrichedPosition, RiskLevel

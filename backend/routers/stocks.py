@@ -1,5 +1,5 @@
 """
-NARRA — Stock Data Router
+CLARA — Stock Data Router
 GET /api/stocks/quote/{symbol}
 GET /api/stocks/quotes          (batch)
 GET /api/stocks/history/{symbol}

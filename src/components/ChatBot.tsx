@@ -1,5 +1,5 @@
 /**
- * NARRA — AI Side Panel Chatbot
+ * CLARA — AI Side Panel Chatbot
  * Slides in from the right as a fixed side drawer. Full-height, always accessible.
  */
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -52,7 +52,7 @@ function generateResponse(input: string, ctx?: ChatBotProps['portfolioContext'])
   }
 
   if (q.includes('vix') || q.includes('volatility')) {
-    return `📊 **VIX / Volatility**\n\nNARRA Regime: **Crisis Contagion** · Multiplier **1.85×**\n\nIn VIX spike environments:\n• Correlations converge → 1\n• Tail risk increases non-linearly\n• Bid-ask spreads widen\n• Options premiums inflate 30-50%\n\n**Recommendation:** Reduce beta, increase cash, consider put spreads on broad indices.`;
+    return `📊 **VIX / Volatility**\n\nCLARA Regime: **Crisis Contagion** · Multiplier **1.85×**\n\nIn VIX spike environments:\n• Correlations converge → 1\n• Tail risk increases non-linearly\n• Bid-ask spreads widen\n• Options premiums inflate 30-50%\n\n**Recommendation:** Reduce beta, increase cash, consider put spreads on broad indices.`;
   }
 
   if (q.includes('fed') || q.includes('rate') || q.includes('fomc')) {
@@ -60,11 +60,11 @@ function generateResponse(input: string, ctx?: ChatBotProps['portfolioContext'])
   }
 
   if (q.includes('inflation') || q.includes('cpi')) {
-    return `📈 **Inflation Risk**\n\n• **Commodities** — natural hedge ✓\n• **TIPS** — preferred in inflationary regimes ✓\n• **Tech** — pricing power helps but DCF hurt\n• **Long bonds** — most vulnerable\n\nNARRA applies **Inflation Shock Regime** multiplier when CPI > 4%.`;
+    return `📈 **Inflation Risk**\n\n• **Commodities** — natural hedge ✓\n• **TIPS** — preferred in inflationary regimes ✓\n• **Tech** — pricing power helps but DCF hurt\n• **Long bonds** — most vulnerable\n\nCLARA applies **Inflation Shock Regime** multiplier when CPI > 4%.`;
   }
 
   if (q.includes('recession') || q.includes('crash') || q.includes('downturn')) {
-    return `⚠️ **Recession Scenario**\n\nNARRA parameters:\n• Equity drawdown: **-25% to -45%**\n• HY spread widening: **+300-600bps**\n• VIX range: **35–65**\n• All assets → correlation 1.0\n\n**Defensive playbook:**\n1. Raise cash 15–20%\n2. Rotate to Quality factor\n3. Buy puts on high-beta\n4. Add gold/treasuries\n5. Tighten all stop-losses`;
+    return `⚠️ **Recession Scenario**\n\nCLARA parameters:\n• Equity drawdown: **-25% to -45%**\n• HY spread widening: **+300-600bps**\n• VIX range: **35–65**\n• All assets → correlation 1.0\n\n**Defensive playbook:**\n1. Raise cash 15–20%\n2. Rotate to Quality factor\n3. Buy puts on high-beta\n4. Add gold/treasuries\n5. Tighten all stop-losses`;
   }
 
   const stocks: Record<string, string> = {
@@ -90,7 +90,7 @@ function generateResponse(input: string, ctx?: ChatBotProps['portfolioContext'])
   }
 
   if (q.includes('var') || q.includes('value at risk')) {
-    return `📊 **VaR / Expected Shortfall**\n\n• **VaR 95%:** Won't exceed in 19/20 days\n• **VaR 99%:** Won't exceed in 99/100 days\n• **ES (CVaR):** Avg loss in worst 1% of scenarios\n\nNARRA uses 100K Monte Carlo paths with regime-conditioned covariance (1.85× multiplier, stressed correlations).\n\nGo to **Portfolio Risk → Monte Carlo** for your simulation.`;
+    return `📊 **VaR / Expected Shortfall**\n\n• **VaR 95%:** Won't exceed in 19/20 days\n• **VaR 99%:** Won't exceed in 99/100 days\n• **ES (CVaR):** Avg loss in worst 1% of scenarios\n\nCLARA uses 100K Monte Carlo paths with regime-conditioned covariance (1.85× multiplier, stressed correlations).\n\nGo to **Portfolio Risk → Monte Carlo** for your simulation.`;
   }
 
   if (q.includes('buy') || q.includes('recommend') || q.includes('top stocks')) {
@@ -98,10 +98,10 @@ function generateResponse(input: string, ctx?: ChatBotProps['portfolioContext'])
   }
 
   if (q.includes('help') || q === 'hi' || q === 'hello' || q === 'hey' || q === '') {
-    return `👋 **Hello! I'm NARRA AI.**\n\nI help you analyze risk, markets, and your portfolio.\n\n**Try asking:**\n• "How is my portfolio doing?"\n• "Analyze NVDA"\n• "What's the current regime?"\n• "Best hedge right now?"\n• "Explain VaR"\n• "Top stocks to buy?"\n• "Recession scenario"\n\nJust type naturally — I understand financial context!`;
+    return `👋 **Hello! I'm CLARA AI.**\n\nI help you analyze risk, markets, and your portfolio.\n\n**Try asking:**\n• "How is my portfolio doing?"\n• "Analyze NVDA"\n• "What's the current regime?"\n• "Best hedge right now?"\n• "Explain VaR"\n• "Top stocks to buy?"\n• "Recession scenario"\n\nJust type naturally — I understand financial context!`;
   }
 
-  return `I understand you're asking about **"${input}"**.\n\nIn the current **Crisis Contagion** regime, all risk factors are amplified **1.85×**. NARRA monitors events, translates narratives to factor shocks, and simulates portfolio impact in real time.\n\nTry asking me about:\n• A specific stock (e.g., "Analyze AAPL")\n• Your portfolio ("How am I doing?")\n• Market conditions ("Current regime?")\n• Risk concepts ("Explain VaR")`;
+  return `I understand you're asking about **"${input}"**.\n\nIn the current **Crisis Contagion** regime, all risk factors are amplified **1.85×**. CLARA monitors events, translates narratives to factor shocks, and simulates portfolio impact in real time.\n\nTry asking me about:\n• A specific stock (e.g., "Analyze AAPL")\n• Your portfolio ("How am I doing?")\n• Market conditions ("Current regime?")\n• Risk concepts ("Explain VaR")`;
 }
 
 // ── Message formatter ────────────────────────────────────────────────────────
@@ -111,7 +111,7 @@ function formatMessage(text: string) {
     if (line.startsWith('•') || line.startsWith('*')) {
       return (
         <div key={i} className="flex gap-2 leading-relaxed">
-          <span className="text-cyan-500 shrink-0">•</span>
+          <span className="text-zinc-400 shrink-0">•</span>
           <span dangerouslySetInnerHTML={{ __html: html.replace(/^[•*]\s*/, '') }} />
         </div>
       );
@@ -142,7 +142,7 @@ export function ChatBot({ portfolioContext, session: _session }: ChatBotProps) {
     {
       id: 'welcome',
       role: 'assistant',
-      content: `👋 **Hello! I'm NARRA AI.**\n\nI'm your institutional risk intelligence assistant. Ask me about your portfolio, market regimes, specific stocks, or risk concepts.\n\nType **"help"** to see everything I can do.`,
+      content: `👋 **Hello! I'm CLARA AI.**\n\nI'm your institutional risk intelligence assistant. Ask me about your portfolio, market regimes, specific stocks, or risk concepts.\n\nType **"help"** to see everything I can do.`,
       timestamp: new Date(),
     },
   ]);
@@ -186,173 +186,155 @@ export function ChatBot({ portfolioContext, session: _session }: ChatBotProps) {
 
   return (
     <>
-      {/* ── Toggle button (always visible on right edge) ── */}
-      <button
-        onClick={() => setOpen(v => !v)}
-        className={cn(
-          'fixed right-0 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center justify-center gap-1.5',
-          'h-28 w-9 rounded-l-2xl border-l border-t border-b transition-all duration-300 shadow-xl',
-          open
-            ? 'border-cyan-700/50 bg-cyan-950/80 text-cyan-300'
-            : 'border-slate-700 bg-slate-900 text-slate-400 hover:bg-slate-800 hover:text-white'
-        )}
-      >
-        {open ? (
-          <ChevronRight size={15} />
-        ) : (
-          <>
-            <MessageCircle size={15} />
-            {unread > 0 && (
-              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[8px] font-black text-white">
-                {unread}
-              </span>
-            )}
-          </>
-        )}
-        <span className="text-[8px] font-bold uppercase tracking-widest" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
-          AI
-        </span>
-      </button>
+      {/* ── Floating Chat Bubble ── */}
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl hover:bg-black transition-all duration-300 border-2 border-zinc-600 p-3"
+        >
+          <img src="/blackhole-icon.svg" alt="CLARA AI" className="w-full h-full" />
+          {unread > 0 && (
+            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-black text-white animate-pulse">
+              {unread}
+            </span>
+          )}
+        </button>
+      )}
 
-      {/* ── Side Drawer ── */}
-      <div className={cn(
-        'fixed right-0 top-0 bottom-0 z-30 flex flex-col border-l border-slate-800 bg-slate-950 shadow-2xl shadow-black/60 transition-all duration-300',
-        open ? 'w-[380px]' : 'w-0 overflow-hidden'
-      )}>
-        {open && (
-          <>
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-gradient-to-r from-slate-900 to-slate-950 shrink-0">
-              <div className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600">
-                  <Brain size={14} className="text-white" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-white flex items-center gap-1.5">
-                    NARRA AI
-                    <Sparkles size={10} className="text-cyan-400" />
-                  </div>
-                  <div className="flex items-center gap-1 text-[9px] text-slate-500">
-                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Online · Crisis Contagion Regime
-                  </div>
-                </div>
+      {/* ── Chat Window ── */}
+      {open && (
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col w-[400px] h-[600px] rounded-2xl border border-zinc-800 bg-black shadow-2xl overflow-hidden">
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-900 bg-gradient-to-r from-zinc-950 to-black shrink-0">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center">
+                <img src="/blackhole-icon.svg" alt="CLARA Logo" className="w-full h-full" />
               </div>
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={() => setMessages(msgs => [msgs[0]])}
-                  className="rounded-lg p-1.5 text-slate-600 hover:bg-slate-800 hover:text-slate-400 transition-colors"
-                  title="Clear chat"
-                >
-                  <RefreshCw size={11} />
-                </button>
-                <button
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg p-1.5 text-slate-600 hover:bg-slate-800 hover:text-red-400 transition-colors"
-                >
-                  <X size={13} />
-                </button>
+              <div>
+                <div className="text-xs font-bold text-white flex items-center gap-1.5" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>
+                  CLARA AI
+                  <Sparkles size={10} className="text-zinc-400" />
+                </div>
+                <div className="flex items-center gap-1 text-[9px] text-zinc-500">
+                  <div className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                  Online · Crisis Contagion Regime
+                </div>
               </div>
             </div>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setMessages(msgs => [msgs[0]])}
+                className="rounded-lg p-1.5 text-zinc-600 hover:bg-black hover:text-zinc-400 transition-colors"
+                title="Clear chat"
+              >
+                <RefreshCw size={11} />
+              </button>
+              <button
+                onClick={() => setOpen(false)}
+                className="rounded-lg p-1.5 text-zinc-600 hover:bg-black hover:text-white transition-colors"
+              >
+                <X size={13} />
+              </button>
+            </div>
+          </div>
 
-            {/* Portfolio context banner */}
-            {portfolioContext && (
-              <div className="flex items-center gap-2 border-b border-slate-800 bg-slate-900/60 px-4 py-1.5 shrink-0">
-                <Zap size={9} className="text-cyan-400" />
-                <span className="text-[9px] text-slate-500">
-                  Portfolio loaded · ${portfolioContext.totalValue.toLocaleString()} · β={portfolioContext.beta.toFixed(2)} · {portfolioContext.holdings.length} positions
-                </span>
-              </div>
-            )}
+          {/* Portfolio context banner */}
+          {portfolioContext && (
+            <div className="flex items-center gap-2 border-b border-zinc-900 bg-black/60 px-4 py-1.5 shrink-0">
+              <Zap size={9} className="text-zinc-400" />
+              <span className="text-[9px] text-zinc-500">
+                Portfolio loaded · ${portfolioContext.totalValue.toLocaleString()} · β={portfolioContext.beta.toFixed(2)} · {portfolioContext.holdings.length} positions
+              </span>
+            </div>
+          )}
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
-              {messages.map(msg => (
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            {messages.map(msg => (
                 <div key={msg.id} className={cn('flex gap-2.5', msg.role === 'user' ? 'flex-row-reverse' : 'flex-row')}>
                   <div className={cn(
                     'flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs',
                     msg.role === 'user'
-                      ? 'bg-cyan-600'
-                      : 'bg-gradient-to-br from-cyan-900 to-blue-900 border border-cyan-800/40'
+                      ? 'bg-zinc-700'
+                      : 'bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700/40'
                   )}>
-                    {msg.role === 'user' ? <User size={12} className="text-white" /> : <Bot size={12} className="text-cyan-300" />}
+                    {msg.role === 'user' ? <User size={12} className="text-white" /> : <Bot size={12} className="text-zinc-300" />}
                   </div>
                   <div className={cn(
                     'max-w-[88%] rounded-2xl px-3.5 py-2.5 text-[11px] space-y-0.5',
                     msg.role === 'user'
-                      ? 'bg-cyan-700/40 border border-cyan-700/30 rounded-tr-sm text-white'
-                      : 'bg-slate-800/80 border border-slate-700/50 rounded-tl-sm text-slate-300'
+                      ? 'bg-zinc-800/80 border border-zinc-700/50 rounded-tr-sm text-white'
+                      : 'bg-black/80 border border-zinc-800/50 rounded-tl-sm text-zinc-300'
                   )}>
                     {msg.role === 'assistant'
                       ? <div className="space-y-0.5">{formatMessage(msg.content)}</div>
                       : <div>{msg.content}</div>
                     }
-                    <div className="text-[9px] text-slate-600 mt-1.5 pt-1 border-t border-slate-700/30">
+                    <div className="text-[9px] text-zinc-600 mt-1.5 pt-1 border-t border-zinc-800/30">
                       {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </div>
                   </div>
                 </div>
-              ))}
+            ))}
 
-              {loading && (
+            {loading && (
                 <div className="flex gap-2.5">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-900 to-blue-900 border border-cyan-800/40">
-                    <Bot size={12} className="text-cyan-300" />
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700/40">
+                    <Bot size={12} className="text-zinc-300" />
                   </div>
-                  <div className="rounded-2xl rounded-tl-sm bg-slate-800/80 border border-slate-700/50 px-4 py-3">
+                  <div className="rounded-2xl rounded-tl-sm bg-black/80 border border-zinc-800/50 px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <Loader2 size={11} className="animate-spin text-cyan-400" />
-                      <span className="text-[10px] text-slate-500">NARRA is analyzing…</span>
+                      <Loader2 size={11} className="animate-spin text-zinc-400" />
+                      <span className="text-[10px] text-zinc-500">CLARA is analyzing…</span>
                     </div>
                   </div>
                 </div>
-              )}
-              <div ref={bottomRef} />
-            </div>
+            )}
+            <div ref={bottomRef} />
+          </div>
 
-            {/* Quick prompts */}
-            <div className="border-t border-slate-800/60 px-4 pt-2 pb-1 shrink-0">
-              <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
-                {QUICK_PROMPTS.map(p => (
-                  <button
-                    key={p}
-                    onClick={() => sendMessage(p)}
-                    className="shrink-0 rounded-full border border-slate-700 bg-slate-800/60 px-2.5 py-1 text-[10px] text-slate-400 hover:border-cyan-700 hover:text-cyan-300 hover:bg-cyan-950/30 transition-all whitespace-nowrap"
-                  >
-                    {p}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Input */}
-            <div className="border-t border-slate-800 p-3 shrink-0">
-              <div className="flex items-end gap-2 rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 focus-within:border-cyan-600 transition-colors">
-                <textarea
-                  ref={inputRef}
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  onKeyDown={handleKey}
-                  placeholder="Ask NARRA anything…"
-                  rows={1}
-                  className="flex-1 resize-none bg-transparent text-xs text-white placeholder-slate-600 focus:outline-none leading-relaxed max-h-20"
-                  style={{ overflowY: input.split('\n').length > 3 ? 'auto' : 'hidden' }}
-                />
+          {/* Quick prompts */}
+          <div className="border-t border-zinc-900/60 px-4 pt-2 pb-1 shrink-0">
+            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
+              {QUICK_PROMPTS.map(p => (
                 <button
-                  onClick={() => sendMessage()}
-                  disabled={!input.trim() || loading}
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-cyan-600 hover:bg-cyan-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                  key={p}
+                  onClick={() => sendMessage(p)}
+                  className="shrink-0 rounded-full border border-zinc-700 bg-black/60 px-2.5 py-1 text-[10px] text-zinc-400 hover:border-zinc-600 hover:text-white hover:bg-zinc-800 transition-all whitespace-nowrap"
                 >
-                  <Send size={12} className="text-white" />
+                  {p}
                 </button>
-              </div>
-              <div className="text-[9px] text-slate-700 mt-1.5 text-center">
-                Enter to send · Shift+Enter for newline
-              </div>
+              ))}
             </div>
-          </>
-        )}
-      </div>
+          </div>
+
+          {/* Input */}
+          <div className="border-t border-zinc-900 p-3 shrink-0">
+            <div className="flex items-end gap-2 rounded-xl border border-zinc-700 bg-black px-3 py-2 focus-within:border-zinc-600 transition-colors">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={handleKey}
+                placeholder="Ask CLARA anything…"
+                rows={1}
+                className="flex-1 resize-none bg-transparent text-xs text-white placeholder-zinc-600 focus:outline-none leading-relaxed max-h-20"
+                style={{ overflowY: input.split('\n').length > 3 ? 'auto' : 'hidden' }}
+              />
+              <button
+                onClick={() => sendMessage()}
+                disabled={!input.trim() || loading}
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-zinc-700 hover:bg-zinc-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              >
+                <Send size={12} className="text-white" />
+              </button>
+            </div>
+            <div className="text-[9px] text-zinc-700 mt-1.5 text-center">
+              Enter to send · Shift+Enter for newline
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

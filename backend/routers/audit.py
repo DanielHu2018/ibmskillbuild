@@ -1,4 +1,4 @@
-"""NARRA — Audit Trail Router"""
+"""CLARA — Audit Trail Router"""
 import uuid
 from datetime import datetime, timedelta
 from fastapi import APIRouter

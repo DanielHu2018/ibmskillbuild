@@ -1,5 +1,5 @@
 /**
- * NARRA — AI Alert Agent Hook
+ * CLARA — AI Alert Agent Hook
  *
  * Continuously monitors live holdings against their computed price targets.
  * When a target is crossed it:
@@ -88,8 +88,8 @@ const DEFAULT_CONFIG: AlertAgentConfig = {
   dailySummaryTime: '16:00',
 };
 
-const CONFIG_KEY = 'narra_alert_config_v1';
-const LOGS_KEY   = 'narra_alert_logs_v1';
+const CONFIG_KEY = 'CLARA_alert_config_v1';
+const LOGS_KEY   = 'CLARA_alert_logs_v1';
 
 function loadConfig(): AlertAgentConfig {
   try {

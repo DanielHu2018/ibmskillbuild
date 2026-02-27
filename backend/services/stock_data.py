@@ -1,5 +1,5 @@
 """
-NARRA — Stock Data Service (Python)
+CLARA — Stock Data Service (Python)
 Multi-source async stock data fetcher with cascading fallbacks:
 
   Priority:
@@ -22,7 +22,7 @@ import httpx
 from config import settings
 from services import alpha_vantage as av
 
-logger = logging.getLogger("narra.stock_data")
+logger = logging.getLogger("CLARA.stock_data")
 
 # ── Company metadata ───────────────────────────────────────────────────────────
 COMPANY_META: Dict[str, Dict[str, Any]] = {

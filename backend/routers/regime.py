@@ -1,4 +1,4 @@
-"""NARRA — Regime Engine Router"""
+"""CLARA — Regime Engine Router"""
 from fastapi import APIRouter
 router = APIRouter()
 

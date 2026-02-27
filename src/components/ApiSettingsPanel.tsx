@@ -8,7 +8,7 @@ import { isAlphaVantageConfigured, getAVRateStatus } from '@/services/alphaVanta
 
 // ── Runtime key overrides stored in localStorage ──────────────────────────────
 // This lets users paste their keys in the UI without touching .env.
-const LS_PREFIX = 'narra_api_key_';
+const LS_PREFIX = 'CLARA_api_key_';
 
 export function getRuntimeKey(name: string): string {
   return localStorage.getItem(LS_PREFIX + name) || '';
@@ -147,9 +147,9 @@ function isKeyConfigured(api: ApiDef, runtimeVal: string): boolean {
 
 function getColorClasses(color: string, variant: 'bg' | 'border' | 'text' | 'badge') {
   const map: Record<string, Record<string, string>> = {
-    cyan:    { bg: 'bg-cyan-950/30',   border: 'border-cyan-800/50',   text: 'text-cyan-400',    badge: 'bg-cyan-500/15 text-cyan-300' },
+    cyan:    { bg: 'bg-orange-950/30',   border: 'border-orange-800/50',   text: 'text-orange-400',    badge: 'bg-orange-500/15 text-orange-300' },
     violet:  { bg: 'bg-violet-950/30', border: 'border-violet-800/50', text: 'text-violet-400',  badge: 'bg-violet-500/15 text-violet-300' },
-    emerald: { bg: 'bg-emerald-950/30',border: 'border-emerald-800/50',text: 'text-emerald-400', badge: 'bg-emerald-500/15 text-emerald-300' },
+    emerald: { bg: 'bg-orange-950/30',border: 'border-orange-800/50',text: 'text-orange-400', badge: 'bg-orange-500/15 text-orange-300' },
     amber:   { bg: 'bg-amber-950/30',  border: 'border-amber-800/50',  text: 'text-amber-400',   badge: 'bg-amber-500/15 text-amber-300' },
   };
   return map[color]?.[variant] || '';
@@ -216,14 +216,14 @@ function ApiCard({ api }: { api: ApiDef }) {
                 Priority #{api.priority}
               </span>
             </div>
-            <p className="text-[10px] text-slate-500 mt-0.5 font-mono">{api.envKey}</p>
+            <p className="text-[10px] text-zinc-500 mt-0.5 font-mono">{api.envKey}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           {configured ? (
-            <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1">
-              <CheckCircle2 size={11} className="text-emerald-400" />
-              <span className="text-[10px] font-semibold text-emerald-400">Configured</span>
+            <div className="flex items-center gap-1.5 rounded-full bg-orange-500/15 px-2.5 py-1">
+              <CheckCircle2 size={11} className="text-orange-400" />
+              <span className="text-[10px] font-semibold text-orange-400">Configured</span>
             </div>
           ) : (
             <div className="flex items-center gap-1.5 rounded-full bg-red-500/15 px-2.5 py-1">
@@ -235,7 +235,7 @@ function ApiCard({ api }: { api: ApiDef }) {
       </div>
 
       {/* Description */}
-      <p className="text-[11px] text-slate-400 leading-relaxed mb-3">{api.description}</p>
+      <p className="text-[11px] text-zinc-400 leading-relaxed mb-3">{api.description}</p>
 
       {/* Used For Tags */}
       <div className="flex flex-wrap gap-1 mb-4">
@@ -247,15 +247,15 @@ function ApiCard({ api }: { api: ApiDef }) {
       </div>
 
       {/* Current Key Display */}
-      <div className="mb-3 rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2.5">
+      <div className="mb-3 rounded-lg border border-zinc-800 bg-black/60 px-3 py-2.5">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-[9px] uppercase text-slate-600 font-semibold mb-1">Current Key</div>
-            <div className="text-xs font-mono text-slate-300">{displayVal}</div>
+            <div className="text-[9px] uppercase text-zinc-600 font-semibold mb-1">Current Key</div>
+            <div className="text-xs font-mono text-zinc-300">{displayVal}</div>
           </div>
           <button
             onClick={() => setShowVal(v => !v)}
-            className="rounded p-1 text-slate-600 hover:text-slate-400 transition-colors cursor-pointer"
+            className="rounded p-1 text-zinc-600 hover:text-zinc-400 transition-colors cursor-pointer"
             title={showVal ? 'Hide' : 'Show'}
           >
             {showVal ? <EyeOff size={13} /> : <Eye size={13} />}
@@ -265,7 +265,7 @@ function ApiCard({ api }: { api: ApiDef }) {
 
       {/* Input to update key at runtime */}
       <div className="mb-3">
-        <div className="text-[9px] uppercase text-slate-600 font-semibold mb-1.5">
+        <div className="text-[9px] uppercase text-zinc-600 font-semibold mb-1.5">
           Paste new key (saved to browser storage)
         </div>
         <div className="flex gap-2">
@@ -275,7 +275,7 @@ function ApiCard({ api }: { api: ApiDef }) {
             onChange={e => setInputVal(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && inputVal && handleSave()}
             placeholder="Paste your API key here..."
-            className="flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-white placeholder-slate-600 focus:border-slate-500 focus:outline-none"
+            className="flex-1 rounded-lg border border-zinc-700 bg-black px-3 py-2 text-xs text-white placeholder-zinc-600 focus:border-zinc-500 focus:outline-none"
           />
           <button
             onClick={handleSave}
@@ -283,8 +283,8 @@ function ApiCard({ api }: { api: ApiDef }) {
             className={cn(
               'rounded-lg px-3 py-2 text-xs font-semibold transition-all cursor-pointer disabled:opacity-30',
               saved
-                ? 'bg-emerald-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600',
+                ? 'bg-orange-600 text-white'
+                : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600',
             )}
           >
             {saved ? '✓ Saved' : 'Save'}
@@ -298,7 +298,7 @@ function ApiCard({ api }: { api: ApiDef }) {
       </div>
 
       {/* Bottom Row: links + test */}
-      <div className="flex items-center justify-between pt-3 border-t border-slate-800">
+      <div className="flex items-center justify-between pt-3 border-t border-zinc-800">
         <div className="flex items-center gap-3 text-[10px]">
           <a
             href={api.registerUrl}
@@ -308,28 +308,28 @@ function ApiCard({ api }: { api: ApiDef }) {
           >
             Get Free Key <ExternalLink size={9} />
           </a>
-          <span className="text-slate-700">|</span>
+          <span className="text-zinc-700">|</span>
           <a
             href={api.docsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-slate-500 hover:text-slate-300"
+            className="flex items-center gap-1 text-zinc-500 hover:text-zinc-300"
           >
             Docs <ExternalLink size={9} />
           </a>
-          <span className="rounded bg-slate-800 px-2 py-0.5 text-[9px] text-slate-500">{api.freeTier}</span>
+          <span className="rounded bg-zinc-800 px-2 py-0.5 text-[9px] text-zinc-500">{api.freeTier}</span>
         </div>
 
         {api.testEndpoint && (
           <button
             onClick={handleTest}
             disabled={testing || !configured}
-            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-[10px] text-slate-400 hover:border-slate-600 hover:text-white transition-all cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-black px-3 py-1.5 text-[10px] text-zinc-400 hover:border-zinc-600 hover:text-white transition-all cursor-pointer disabled:opacity-40"
           >
             {testing ? (
               <><RefreshCw size={10} className="animate-spin" /> Testing...</>
             ) : testResult === 'success' ? (
-              <><CheckCircle2 size={10} className="text-emerald-400" /> Connected</>
+              <><CheckCircle2 size={10} className="text-orange-400" /> Connected</>
             ) : testResult === 'fail' ? (
               <><XCircle size={10} className="text-red-400" /> Failed</>
             ) : (
@@ -349,48 +349,48 @@ function AVRateMeter() {
   const color = pct < 60 ? 'emerald' : pct < 85 ? 'amber' : 'red';
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+    <div className="rounded-xl border border-zinc-800 bg-black/50 p-5">
       <div className="flex items-center gap-2 mb-4">
-        <Zap size={15} className="text-cyan-400" />
+        <Zap size={15} className="text-orange-400" />
         <h3 className="text-sm font-semibold text-white">Alpha Vantage Rate Limiter</h3>
         <span className={cn(
           'ml-auto rounded-full px-2.5 py-0.5 text-[10px] font-semibold',
-          isAlphaVantageConfigured() ? 'bg-emerald-500/15 text-emerald-400' : 'bg-slate-800 text-slate-500',
+          isAlphaVantageConfigured() ? 'bg-orange-500/15 text-orange-400' : 'bg-zinc-800 text-zinc-500',
         )}>
           {isAlphaVantageConfigured() ? 'Active' : 'Not Configured'}
         </span>
       </div>
 
       <div className="grid grid-cols-3 gap-4 mb-4">
-        <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-3 text-center">
+        <div className="rounded-lg border border-zinc-800 bg-black/50 p-3 text-center">
           <div className="text-xl font-bold font-mono text-white">{status.requestsToday}</div>
-          <div className="text-[10px] text-slate-500 mt-0.5">Requests Today</div>
+          <div className="text-[10px] text-zinc-500 mt-0.5">Requests Today</div>
         </div>
-        <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-3 text-center">
+        <div className="rounded-lg border border-zinc-800 bg-black/50 p-3 text-center">
           <div className="text-xl font-bold font-mono text-white">{25 - status.requestsToday}</div>
-          <div className="text-[10px] text-slate-500 mt-0.5">Remaining Today</div>
+          <div className="text-[10px] text-zinc-500 mt-0.5">Remaining Today</div>
         </div>
-        <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-3 text-center">
+        <div className="rounded-lg border border-zinc-800 bg-black/50 p-3 text-center">
           <div className="text-xl font-bold font-mono text-white">25</div>
-          <div className="text-[10px] text-slate-500 mt-0.5">Daily Limit (Free)</div>
+          <div className="text-[10px] text-zinc-500 mt-0.5">Daily Limit (Free)</div>
         </div>
       </div>
 
       <div>
-        <div className="flex justify-between text-[10px] text-slate-500 mb-1.5">
+        <div className="flex justify-between text-[10px] text-zinc-500 mb-1.5">
           <span>Daily Usage</span>
           <span>{pct.toFixed(0)}%</span>
         </div>
-        <div className="h-2.5 rounded-full bg-slate-800 overflow-hidden">
+        <div className="h-2.5 rounded-full bg-zinc-800 overflow-hidden">
           <div
             className={cn(
               'h-full rounded-full transition-all duration-500',
-              color === 'emerald' ? 'bg-emerald-500' : color === 'amber' ? 'bg-amber-500' : 'bg-red-500'
+              color === 'emerald' ? 'bg-orange-500' : color === 'amber' ? 'bg-amber-500' : 'bg-red-500'
             )}
             style={{ width: `${pct}%` }}
           />
         </div>
-        <p className="text-[10px] text-slate-600 mt-2">
+        <p className="text-[10px] text-zinc-600 mt-2">
           Resets daily at midnight UTC · Last reset: {status.lastReset}
         </p>
       </div>
@@ -409,9 +409,9 @@ function SourcePriorityDiagram() {
   ];
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+    <div className="rounded-xl border border-zinc-800 bg-black/50 p-5">
       <div className="flex items-center gap-2 mb-4">
-        <Shield size={15} className="text-cyan-400" />
+        <Shield size={15} className="text-orange-400" />
         <h3 className="text-sm font-semibold text-white">Data Source Priority Chain</h3>
       </div>
       <div className="space-y-2">
@@ -419,37 +419,37 @@ function SourcePriorityDiagram() {
           <div key={s.num} className="relative">
             <div className={cn(
               'flex items-center gap-3 rounded-lg border px-4 py-3',
-              s.status === 'always'    ? 'border-emerald-800/50 bg-emerald-950/20' :
-              s.status === 'active'    ? 'border-cyan-800/40 bg-cyan-950/15' :
-              s.status === 'fallback'  ? 'border-slate-700/50 bg-slate-900/30' :
-              'border-slate-800 bg-slate-950/30 opacity-50'
+              s.status === 'always'    ? 'border-orange-800/50 bg-orange-950/20' :
+              s.status === 'active'    ? 'border-orange-800/40 bg-orange-950/15' :
+              s.status === 'fallback'  ? 'border-zinc-700/50 bg-black/30' :
+              'border-zinc-800 bg-black/30 opacity-50'
             )}>
               <div className={cn(
                 'flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold flex-shrink-0',
-                s.status === 'always'   ? 'bg-emerald-500/20 text-emerald-400' :
-                s.status === 'active'   ? 'bg-cyan-500/20 text-cyan-400' :
-                s.status === 'fallback' ? 'bg-slate-700 text-slate-400' :
-                'bg-slate-800 text-slate-600'
+                s.status === 'always'   ? 'bg-orange-500/20 text-orange-400' :
+                s.status === 'active'   ? 'bg-orange-500/20 text-orange-400' :
+                s.status === 'fallback' ? 'bg-zinc-700 text-zinc-400' :
+                'bg-zinc-800 text-zinc-600'
               )}>
                 {s.num}
               </div>
               <div className="flex-1">
                 <div className="text-xs font-semibold text-white">{s.name}</div>
-                <div className="text-[10px] text-slate-500 font-mono">{s.note}</div>
+                <div className="text-[10px] text-zinc-500 font-mono">{s.note}</div>
               </div>
               <div className={cn(
                 'text-[9px] font-bold uppercase rounded-full px-2 py-0.5',
-                s.status === 'always'   ? 'bg-emerald-500/15 text-emerald-400' :
-                s.status === 'active'   ? 'bg-cyan-500/15 text-cyan-400' :
-                s.status === 'fallback' ? 'bg-slate-700 text-slate-400' :
-                'bg-slate-800 text-slate-600'
+                s.status === 'always'   ? 'bg-orange-500/15 text-orange-400' :
+                s.status === 'active'   ? 'bg-orange-500/15 text-orange-400' :
+                s.status === 'fallback' ? 'bg-zinc-700 text-zinc-400' :
+                'bg-zinc-800 text-zinc-600'
               )}>
                 {s.status === 'always' ? '✓ Always On' : s.status === 'active' ? '✓ Configured' : s.status === 'fallback' ? 'Fallback' : '✗ Not Set'}
               </div>
             </div>
             {i < sources.length - 1 && (
               <div className="flex justify-center py-0.5">
-                <div className="text-[10px] text-slate-700">↓ if unavailable</div>
+                <div className="text-[10px] text-zinc-700">↓ if unavailable</div>
               </div>
             )}
           </div>
@@ -463,7 +463,7 @@ function SourcePriorityDiagram() {
 function EnvInstructions() {
   const [copied, setCopied] = useState(false);
 
-  const envContent = `# NARRA Environment Configuration
+  const envContent = `# CLARA Environment Configuration
 # Add this to your .env file in the project root
 
 # Alpha Vantage — https://www.alphavantage.co/support/#api-key
@@ -488,7 +488,7 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key`;
   }
 
   return (
-    <div className="rounded-xl border border-slate-700 bg-slate-900/50 p-5">
+    <div className="rounded-xl border border-zinc-700 bg-black/50 p-5">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Info size={15} className="text-amber-400" />
@@ -496,17 +496,17 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key`;
         </div>
         <button
           onClick={handleCopy}
-          className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-[10px] text-slate-400 hover:text-white hover:border-slate-600 transition-all cursor-pointer"
+          className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-[10px] text-zinc-400 hover:text-white hover:border-zinc-600 transition-all cursor-pointer"
         >
           {copied ? '✓ Copied!' : 'Copy Template'}
         </button>
       </div>
-      <p className="text-[11px] text-slate-500 mb-3">
+      <p className="text-[11px] text-zinc-500 mb-3">
         For permanent key configuration, add these variables to your <code className="text-amber-400 font-mono">.env</code> file
         in the project root, then rebuild. Keys saved via the UI above are stored in browser localStorage and work immediately
         but reset if storage is cleared.
       </p>
-      <pre className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-4 text-[10px] text-slate-400 font-mono leading-relaxed">
+      <pre className="overflow-x-auto rounded-lg border border-zinc-800 bg-black p-4 text-[10px] text-zinc-400 font-mono leading-relaxed">
         {envContent}
       </pre>
     </div>
@@ -529,14 +529,14 @@ export function ApiSettingsPanel() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">API Configuration</h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-zinc-500 mt-0.5">
             Manage API keys for live market data, technical indicators, and email alerts.
           </p>
         </div>
         <div className="flex items-center gap-2">
           <div className={cn(
             'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold',
-            configuredCount > 2 ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400',
+            configuredCount > 2 ? 'bg-orange-500/15 text-orange-400' : 'bg-amber-500/15 text-amber-400',
           )}>
             {configuredCount > 2 ? <CheckCircle2 size={12} /> : <AlertTriangle size={12} />}
             {configuredCount} / {APIS.length} Keys Configured
@@ -553,8 +553,8 @@ export function ApiSettingsPanel() {
             className={cn(
               'rounded-lg px-4 py-2 text-xs font-semibold transition-all cursor-pointer',
               activeGroup === id
-                ? 'bg-cyan-600 text-white'
-                : 'border border-slate-700 bg-slate-900 text-slate-400 hover:text-white',
+                ? 'bg-orange-600 text-white'
+                : 'border border-zinc-700 bg-black text-zinc-400 hover:text-white',
             )}
           >
             {label}

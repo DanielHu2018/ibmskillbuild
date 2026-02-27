@@ -1,5 +1,5 @@
 /**
- * NARRA — Multi-Portfolio Manager
+ * CLARA — Multi-Portfolio Manager
  * Supports multiple named portfolios per user.
  * Each user gets their own isolated storage namespace.
  */
@@ -29,7 +29,7 @@ const PORTFOLIO_COLORS = [
 ];
 
 function storageKey(userId: string) {
-  return `narra_portfolios_${userId}_v2`;
+  return `CLARA_portfolios_${userId}_v2`;
 }
 
 function loadPortfolios(userId: string): Portfolio[] {

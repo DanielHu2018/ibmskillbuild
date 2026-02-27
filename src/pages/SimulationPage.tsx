@@ -29,26 +29,26 @@ export function SimulationPage() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">Monte Carlo Simulation Engine</h2>
-          <p className="text-xs text-slate-500 mt-0.5">100K path simulation with regime-conditioned covariance, non-linear payoff modeling, correlation stress</p>
+          <p className="text-xs text-zinc-500 mt-0.5">100K path simulation with regime-conditioned covariance, non-linear payoff modeling, correlation stress</p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-[10px] font-semibold text-emerald-400 uppercase">100K Paths Complete</span>
-          <span className="rounded-full bg-cyan-500/15 px-3 py-1 text-[10px] font-semibold text-cyan-400 uppercase">Converged</span>
+          <span className="rounded-full bg-orange-500/15 px-3 py-1 text-[10px] font-semibold text-orange-400 uppercase">100K Paths Complete</span>
+          <span className="rounded-full bg-orange-500/15 px-3 py-1 text-[10px] font-semibold text-orange-400 uppercase">Converged</span>
         </div>
       </div>
 
       {/* Simulation Stats */}
       <div className="grid grid-cols-6 gap-3">
         {[
-          { label: 'Total Paths', value: '100,000', color: 'text-cyan-400' },
-          { label: 'Computation Time', value: '142s', color: 'text-emerald-400' },
+          { label: 'Total Paths', value: '100,000', color: 'text-orange-400' },
+          { label: 'Computation Time', value: '142s', color: 'text-orange-400' },
           { label: 'Covariance Matrix', value: 'Regime-Adj', color: 'text-amber-400' },
           { label: 'Payoff Model', value: 'Non-Linear', color: 'text-purple-400' },
           { label: 'Correlation Stress', value: 'Active', color: 'text-red-400' },
-          { label: 'Convergence', value: '99.2%', color: 'text-emerald-400' },
+          { label: 'Convergence', value: '99.2%', color: 'text-orange-400' },
         ].map(s => (
-          <div key={s.label} className="rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2.5">
-            <div className="text-[10px] text-slate-500 uppercase tracking-wider">{s.label}</div>
+          <div key={s.label} className="rounded-lg border border-zinc-800 bg-black/50 px-3 py-2.5">
+            <div className="text-[10px] text-zinc-500 uppercase tracking-wider">{s.label}</div>
             <div className={cn('text-lg font-bold font-mono mt-0.5', s.color)}>{s.value}</div>
           </div>
         ))}
@@ -62,9 +62,10 @@ export function SimulationPage() {
 
       {/* Convergence Analysis */}
       <div className="grid grid-cols-2 gap-4">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+        <div className="rounded-xl border border-zinc-800 bg-black/50 p-5">
           <h3 className="text-sm font-semibold text-white mb-3">Convergence Analysis</h3>
-          <ResponsiveContainer width="100%" height={220}>
+          <div className="bg-zinc-900/50 rounded-lg p-3">
+            <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={convergenceData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
               <XAxis dataKey="paths" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={{ stroke: '#334155' }} tickLine={false} />
@@ -75,11 +76,13 @@ export function SimulationPage() {
               <Area type="monotone" dataKey="es" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.1} strokeWidth={2} name="ES ($M)" />
             </AreaChart>
           </ResponsiveContainer>
+          </div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+        <div className="rounded-xl border border-zinc-800 bg-black/50 p-5">
           <h3 className="text-sm font-semibold text-white mb-3">Sensitivity Analysis — VaR Impact ($M)</h3>
-          <ResponsiveContainer width="100%" height={220}>
+          <div className="bg-zinc-900/50 rounded-lg p-3">
+            <ResponsiveContainer width="100%" height={220}>
             <BarChart data={sensitivityData} layout="vertical" margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
               <XAxis type="number" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={{ stroke: '#334155' }} tickLine={false} />
@@ -92,16 +95,17 @@ export function SimulationPage() {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
       {/* Tail Analysis */}
       <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-7 rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+        <div className="col-span-7 rounded-xl border border-zinc-800 bg-black/50 p-5">
           <h3 className="text-sm font-semibold text-white mb-3">Tail Risk Decomposition</h3>
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-800 text-[10px] uppercase tracking-wider text-slate-500">
+              <tr className="border-b border-zinc-800 text-[10px] uppercase tracking-wider text-zinc-500">
                 <th className="pb-2 text-left font-medium">Percentile</th>
                 <th className="pb-2 text-right font-medium">Portfolio Loss ($M)</th>
                 <th className="pb-2 text-right font-medium">Probability</th>
@@ -118,12 +122,12 @@ export function SimulationPage() {
                 { pct: '99.5th', loss: 68.3, prob: '0.5%', paths: '500', driver: 'Liquidity + correlation' },
                 { pct: '99.9th', loss: 95.7, prob: '0.1%', paths: '100', driver: 'Systemic crisis' },
               ].map(row => (
-                <tr key={row.pct} className="border-b border-slate-800/50">
-                  <td className="py-2.5 font-medium text-slate-200">{row.pct}</td>
+                <tr key={row.pct} className="border-b border-zinc-800/50">
+                  <td className="py-2.5 font-medium text-zinc-200">{row.pct}</td>
                   <td className="py-2.5 text-right font-mono text-red-400">${row.loss}M</td>
-                  <td className="py-2.5 text-right font-mono text-slate-400">{row.prob}</td>
-                  <td className="py-2.5 text-right font-mono text-slate-500">{row.paths}</td>
-                  <td className="py-2.5 pl-3 text-slate-500">{row.driver}</td>
+                  <td className="py-2.5 text-right font-mono text-zinc-400">{row.prob}</td>
+                  <td className="py-2.5 text-right font-mono text-zinc-500">{row.paths}</td>
+                  <td className="py-2.5 pl-3 text-zinc-500">{row.driver}</td>
                 </tr>
               ))}
             </tbody>
@@ -131,7 +135,7 @@ export function SimulationPage() {
         </div>
 
         <div className="col-span-5 space-y-4">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <div className="rounded-xl border border-zinc-800 bg-black/50 p-5">
             <h4 className="text-sm font-semibold text-white mb-3">Simulation Configuration</h4>
             <div className="space-y-2">
               {[
@@ -143,9 +147,9 @@ export function SimulationPage() {
                 { param: 'Vol Surface', value: 'SABR calibrated' },
                 { param: 'Time Horizon', value: '1-day & 10-day' },
               ].map(p => (
-                <div key={p.param} className="flex items-center justify-between border-b border-slate-800/50 pb-2">
-                  <span className="text-[11px] text-slate-500">{p.param}</span>
-                  <span className="text-[11px] font-mono text-cyan-400">{p.value}</span>
+                <div key={p.param} className="flex items-center justify-between border-b border-zinc-800/50 pb-2">
+                  <span className="text-[11px] text-zinc-500">{p.param}</span>
+                  <span className="text-[11px] font-mono text-orange-400">{p.value}</span>
                 </div>
               ))}
             </div>
@@ -161,8 +165,8 @@ export function SimulationPage() {
                 { metric: 'Theta Decay (1d)', value: '-$420K', status: 'ok' },
               ].map(m => (
                 <div key={m.metric} className="flex items-center justify-between">
-                  <span className="text-[11px] text-slate-400">{m.metric}</span>
-                  <span className={cn('text-[11px] font-mono', m.status === 'warning' ? 'text-amber-400' : 'text-slate-400')}>{m.value}</span>
+                  <span className="text-[11px] text-zinc-400">{m.metric}</span>
+                  <span className={cn('text-[11px] font-mono', m.status === 'warning' ? 'text-amber-400' : 'text-zinc-400')}>{m.value}</span>
                 </div>
               ))}
             </div>

@@ -1,6 +1,6 @@
-// ── Mock Data for NARRA Dashboard ──
+// ── Mock Data for CLARA Dashboard ──
 
-export interface NarraEvent {
+export interface CLARAEvent {
   id: string;
   title: string;
   source: string;
@@ -71,7 +71,7 @@ export interface AuditEntry {
   status: 'pass' | 'warning' | 'flag';
 }
 
-export const liveEvents: NarraEvent[] = [
+export const liveEvents: CLARAEvent[] = [
   { id: 'EVT-001', title: 'China announces retaliatory tariffs on US semiconductor exports', source: 'Reuters', timestamp: '2 min ago', relevanceScore: 94, sentiment: -0.82, novelty: 88, sectors: ['Technology', 'Semiconductors'], status: 'simulated', category: 'geopolitical' },
   { id: 'EVT-002', title: 'ECB signals potential emergency rate cut amid bank stress', source: 'Bloomberg', timestamp: '8 min ago', relevanceScore: 89, sentiment: -0.65, novelty: 76, sectors: ['Financials', 'Euro Sovereign'], status: 'translated', category: 'policy' },
   { id: 'EVT-003', title: 'Taiwan Strait military exercises escalate — shipping lanes disrupted', source: 'SCMP', timestamp: '14 min ago', relevanceScore: 97, sentiment: -0.91, novelty: 95, sectors: ['Supply Chain', 'Semiconductors', 'Energy'], status: 'processing', category: 'geopolitical' },

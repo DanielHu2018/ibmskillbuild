@@ -1,5 +1,5 @@
 """
-NARRA — Pydantic Data Models / Schemas
+CLARA — Pydantic Data Models / Schemas
 All request/response shapes for the API.
 """
 

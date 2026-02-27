@@ -68,11 +68,11 @@ const statusStyles = {
     badge: 'text-amber-400',
   },
   ok: {
-    border: 'border-emerald-900/50',
-    bg: 'bg-emerald-950/20',
-    icon: 'bg-emerald-500/15 text-emerald-400',
-    value: 'text-emerald-400',
-    badge: 'text-emerald-400',
+    border: 'border-orange-900/50',
+    bg: 'bg-orange-950/20',
+    icon: 'bg-orange-500/15 text-orange-400',
+    value: 'text-orange-400',
+    badge: 'text-orange-400',
   },
 };
 
@@ -91,7 +91,7 @@ export function KPICards() {
             )}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] text-slate-500 uppercase tracking-wider">{kpi.label}</span>
+              <span className="text-[10px] text-zinc-500 uppercase tracking-wider">{kpi.label}</span>
               <div className={cn('flex h-6 w-6 items-center justify-center rounded-md', style.icon)}>
                 <kpi.icon size={13} />
               </div>
@@ -99,7 +99,7 @@ export function KPICards() {
             <div className={cn('text-xl font-bold font-mono', style.value)}>{kpi.value}</div>
             <div className="mt-1 flex items-center justify-between">
               <span className={cn('text-[10px] font-semibold', style.badge)}>{kpi.change}</span>
-              <span className="text-[9px] text-slate-600">{kpi.detail}</span>
+              <span className="text-[9px] text-zinc-600">{kpi.detail}</span>
             </div>
           </div>
         );

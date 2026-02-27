@@ -1,5 +1,5 @@
 /**
- * NARRA — Seamless Infinite Auto-Scrolling Ticker
+ * CLARA — Seamless Infinite Auto-Scrolling Ticker
  *
  * Stock row  : loops every ~40 s  (fast, Bloomberg-style)
  * News row   : loops every ~80 s  (slower, readable)
@@ -19,27 +19,36 @@ import { Wifi, WifiOff, TrendingUp, TrendingDown, Minus, Radio } from 'lucide-re
 const fmtPrice = (n: number) =>
   n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-const ChangeChip = ({ pct }: { pct: number }) => (
-  <span
-    className={cn(
-      'text-[10px] font-mono font-bold leading-none',
-      pct >= 0 ? 'text-emerald-400' : 'text-red-400',
-    )}
-  >
-    {pct >= 0 ? '▲' : '▼'} {Math.abs(pct).toFixed(2)}%
-  </span>
-);
+const ChangeChip = ({ pct }: { pct: number }) => {
+  const getColor = () => {
+    if (pct > 0.1) return 'text-green-400';
+    if (pct < -0.1) return 'text-red-400';
+    return 'text-orange-400';
+  };
+  
+  const getArrow = () => {
+    if (pct > 0.1) return '▲';
+    if (pct < -0.1) return '▼';
+    return '─';
+  };
+  
+  return (
+    <span className={cn('text-[10px] font-mono font-bold leading-none', getColor())}>
+      {getArrow()} {Math.abs(pct).toFixed(2)}%
+    </span>
+  );
+};
 
 const SentimentIcon = ({ s }: { s: 'positive' | 'negative' | 'neutral' }) => {
-  if (s === 'positive') return <TrendingUp  size={9} className="text-emerald-400 shrink-0" />;
+  if (s === 'positive') return <TrendingUp  size={9} className="text-green-400 shrink-0" />;
   if (s === 'negative') return <TrendingDown size={9} className="text-red-400    shrink-0" />;
-  return <Minus size={9} className="text-slate-500 shrink-0" />;
+  return <Minus size={9} className="text-orange-400 shrink-0" />;
 };
 
 const sentimentColor = (s: 'positive' | 'negative' | 'neutral') => {
-  if (s === 'positive') return 'text-emerald-300';
+  if (s === 'positive') return 'text-green-300';
   if (s === 'negative') return 'text-red-300';
-  return 'text-slate-400';
+  return 'text-orange-400';
 };
 
 /* Symbols shown in the stock row */
@@ -81,9 +90,9 @@ export function LiveNewsTicker() {
     ...indices.map(idx => (
       <div
         key={`I-${idx.symbol}`}
-        className="inline-flex items-center gap-2 px-4 border-r border-slate-800/60"
+        className="inline-flex items-center gap-2 px-4 border-r border-zinc-800/60"
       >
-        <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wide">
+        <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wide">
           {idx.name}
         </span>
         <span className="text-[11px] font-mono font-bold text-white">
@@ -101,11 +110,11 @@ export function LiveNewsTicker() {
       return (
         <div
           key={`S-${sym}`}
-          className="inline-flex items-center gap-2 px-4 border-r border-slate-800/60"
+          className="inline-flex items-center gap-2 px-4 border-r border-zinc-800/60"
         >
-          <span className="text-[11px] font-bold font-mono text-cyan-400">{sym}</span>
+          <span className="text-[11px] font-bold font-mono text-zinc-400">{sym}</span>
           {px > 0 && (
-            <span className="text-[11px] font-mono text-slate-200">${fmtPrice(px)}</span>
+            <span className="text-[11px] font-mono text-zinc-200">${fmtPrice(px)}</span>
           )}
           <ChangeChip pct={pct} />
         </div>
@@ -120,7 +129,7 @@ export function LiveNewsTicker() {
       href={item.url !== '#' ? item.url : undefined}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-6 border-r border-slate-800/40 group cursor-pointer"
+      className="inline-flex items-center gap-2 px-6 border-r border-zinc-800/40 group cursor-pointer"
     >
       <SentimentIcon s={item.sentiment} />
       <span
@@ -132,11 +141,11 @@ export function LiveNewsTicker() {
         {item.title}
       </span>
       {item.tickers.length > 0 && (
-        <span className="text-[9px] text-slate-600 font-mono shrink-0">
+        <span className="text-[9px] text-zinc-600 font-mono shrink-0">
           [{item.tickers.slice(0, 3).join(', ')}]
         </span>
       )}
-      <span className="text-[9px] text-slate-700 shrink-0">
+      <span className="text-[9px] text-zinc-700 shrink-0">
         {item.source} ·{' '}
         {new Date(item.publishedAt).toLocaleTimeString([], {
           hour: '2-digit',
@@ -144,30 +153,30 @@ export function LiveNewsTicker() {
         })}
       </span>
       {/* bullet separator */}
-      <span className="text-slate-700 px-1 shrink-0">◆</span>
+      <span className="text-zinc-700 px-1 shrink-0">◆</span>
     </a>
   ));
 
   /* ── render ────────────────────────────────────────────── */
   return (
-    <div className="border-b border-slate-800 bg-slate-950 select-none">
+    <div className="border-b border-zinc-900 bg-black select-none">
 
       {/* ══ ROW 1 — STOCKS (fast loop) ══════════════════════════ */}
-      <div className="flex items-center border-b border-slate-800/60 h-8">
+      <div className="flex items-center border-b border-zinc-900/60 h-8">
 
         {/* left badge */}
-        <div className="shrink-0 flex items-center gap-1.5 px-3 border-r border-slate-800 h-full bg-slate-900/60">
+        <div className="shrink-0 flex items-center gap-1.5 px-3 border-r border-zinc-900 h-full bg-black/60">
           {stockError
             ? <WifiOff size={10} className="text-amber-500" />
             : <Wifi    size={10}
                 className={cn(
                   stockLoading
                     ? 'text-amber-400 animate-pulse'
-                    : 'text-emerald-400',
+                    : 'text-orange-400',
                 )}
               />
           }
-          <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-wider whitespace-nowrap hidden sm:block">
+          <span className="text-[9px] font-semibold text-zinc-500 uppercase tracking-wider whitespace-nowrap hidden sm:block">
             {stockLoading ? 'LIVE…' : dataSource.split(' ')[0]}
           </span>
         </div>
@@ -187,10 +196,10 @@ export function LiveNewsTicker() {
       <div className="flex items-center h-7 ticker-pause">
 
         {/* left badge */}
-        <div className="shrink-0 flex items-center gap-1.5 px-3 border-r border-slate-800 h-full bg-slate-900/60">
+        <div className="shrink-0 flex items-center gap-1.5 px-3 border-r border-zinc-900 h-full bg-black/60">
           <Radio size={10} className={cn(
             'shrink-0',
-            newsLoading ? 'text-slate-600 animate-pulse' : 'text-amber-400',
+            newsLoading ? 'text-zinc-600 animate-pulse' : 'text-amber-400',
           )} />
           <span className="text-[9px] font-bold text-amber-500/80 uppercase tracking-wider whitespace-nowrap hidden sm:block">
             {newsLoading ? 'NEWS…' : newsSource.split(' ')[0]}
@@ -199,7 +208,7 @@ export function LiveNewsTicker() {
 
         {/* scrolling track */}
         {newsLoading ? (
-          <div className="px-6 text-[10px] text-slate-600 animate-pulse">
+          <div className="px-6 text-[10px] text-zinc-600 animate-pulse">
             Fetching live market news…
           </div>
         ) : (

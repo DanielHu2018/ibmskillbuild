@@ -1,5 +1,5 @@
 /**
- * NARRA — Email Alert Service
+ * CLARA — Email Alert Service
  * Uses EmailJS to send browser-side emails (no backend required).
  *
  * Keys are read from environment variables (.env):
@@ -114,13 +114,13 @@ export async function sendAlertEmail(payload: AlertPayload): Promise<AlertLog> {
 
   if (!isEmailConfigured()) {
     log.errorMessage = 'EmailJS not configured — add keys to .env file';
-    console.warn('[NARRA Alert] EmailJS keys not set. Email NOT sent.', payload);
+    console.warn('[CLARA Alert] EmailJS keys not set. Email NOT sent.', payload);
     return log;
   }
 
   const templateParams = {
     to_email:       payload.toEmail,
-    subject:        `NARRA Alert: ${alertTypeLabel(payload.alertType)} — ${payload.symbol}`,
+    subject:        `CLARA Alert: ${alertTypeLabel(payload.alertType)} — ${payload.symbol}`,
     alert_type:     alertTypeLabel(payload.alertType),
     symbol:         payload.symbol,
     company:        payload.company,
@@ -134,17 +134,17 @@ export async function sendAlertEmail(payload: AlertPayload): Promise<AlertLog> {
     action:         actionText(payload.alertType),
     recommended:    payload.action,
     timestamp:      timestamp.toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' }),
-    narra_version:  'NARRA v1.0 · Narrative Risk Reasoning Agent',
+    CLARA_version:  'CLARA v1.0 · Narrative Risk Reasoning Agent',
   };
 
   try {
     await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
     log.sent = true;
-    console.info(`[NARRA Alert] ✅ Email sent → ${payload.toEmail} for ${payload.symbol} ${payload.alertType}`);
+    console.info(`[CLARA Alert] ✅ Email sent → ${payload.toEmail} for ${payload.symbol} ${payload.alertType}`);
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     log.errorMessage = msg;
-    console.error('[NARRA Alert] ❌ Email failed:', msg);
+    console.error('[CLARA Alert] ❌ Email failed:', msg);
   }
 
   return log;
@@ -206,7 +206,7 @@ export async function sendDailySummary(
 
   const templateParams = {
     to_email:        toEmail,
-    subject:         `NARRA Daily Summary — Portfolio ${totalGainLossPct >= 0 ? '▲' : '▼'} ${Math.abs(totalGainLossPct).toFixed(2)}%`,
+    subject:         `CLARA Daily Summary — Portfolio ${totalGainLossPct >= 0 ? '▲' : '▼'} ${Math.abs(totalGainLossPct).toFixed(2)}%`,
     alert_type:      '📊 Daily Portfolio Summary',
     symbol:          'YOUR PORTFOLIO',
     company:         'All Holdings',
@@ -220,7 +220,7 @@ export async function sendDailySummary(
     action:          `Today's P&L: ${dayGainLoss >= 0 ? '+' : ''}${formatCurrency(dayGainLoss)}. Top movers: ${topStr}`,
     recommended:     'Review your positions and adjust targets as needed.',
     timestamp:       timestamp.toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' }),
-    narra_version:   'NARRA v1.0 · Narrative Risk Reasoning Agent',
+    CLARA_version:   'CLARA v1.0 · Narrative Risk Reasoning Agent',
   };
 
   try {

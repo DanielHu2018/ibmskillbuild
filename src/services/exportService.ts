@@ -1,5 +1,5 @@
 /**
- * NARRA — Export Service
+ * CLARA — Export Service
  * Generates real downloadable exports: JSON, CSV, and a printable HTML report.
  */
 import { shockMatrix, portfolioImpact, hedgeRecommendations, systemMetrics, liveEvents } from '@/data/mockData';
@@ -24,7 +24,7 @@ function timestamp() {
 export function exportJSON() {
   const payload = {
     meta: {
-      system:    'NARRA v2.4.1',
+      system:    'CLARA v2.4.1',
       generated: new Date().toISOString(),
       cycleId:   `CYC-${Math.floor(Math.random() * 50) + 100}`,
       regime:    'Crisis Contagion',
@@ -77,7 +77,7 @@ export function exportJSON() {
 
   downloadBlob(
     JSON.stringify(payload, null, 2),
-    `NARRA_export_${timestamp()}.json`,
+    `CLARA_export_${timestamp()}.json`,
     'application/json',
   );
 }
@@ -86,7 +86,7 @@ export function exportJSON() {
 export function exportCSV() {
   const rows: string[] = [];
 
-  rows.push('NARRA RISK EXPORT');
+  rows.push('CLARA RISK EXPORT');
   rows.push(`Generated,${new Date().toISOString()}`);
   rows.push('Regime,Crisis Contagion');
   rows.push('');
@@ -111,7 +111,7 @@ export function exportCSV() {
     rows.push(`${h.instrument},${h.type},"${h.notional}","${h.cost}",${h.effectiveness},${h.residualTail}`);
   });
 
-  downloadBlob(rows.join('\n'), `NARRA_export_${timestamp()}.csv`, 'text/csv');
+  downloadBlob(rows.join('\n'), `CLARA_export_${timestamp()}.csv`, 'text/csv');
 }
 
 // ── HTML Report ────────────────────────────────────────────────────────────────
@@ -152,7 +152,7 @@ export function exportHTMLReport() {
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>NARRA Risk Report — ${now}</title>
+<title>CLARA Risk Report — ${now}</title>
 <style>
   body{font-family:'Helvetica Neue',sans-serif;background:#fff;color:#111;padding:40px;max-width:960px;margin:0 auto}
   h1{font-size:22px;color:#0f172a;border-bottom:3px solid #0891b2;padding-bottom:12px}
@@ -178,10 +178,10 @@ export function exportHTMLReport() {
 </style>
 </head>
 <body>
-<h1>&#9650; NARRA Institutional Risk Report</h1>
+<h1>&#9650; CLARA Institutional Risk Report</h1>
 <div class="meta">
   <div><span>Generated</span><strong>${now}</strong></div>
-  <div><span>System</span><strong>NARRA v2.4.1</strong></div>
+  <div><span>System</span><strong>CLARA v2.4.1</strong></div>
   <div><span>Regime</span><span class="regime-badge">Crisis Contagion</span></div>
   <div><span>Multiplier</span><strong>1.85&times;</strong></div>
   <div><span>Compliance</span><strong>SR 11-7</strong></div>
@@ -205,12 +205,12 @@ export function exportHTMLReport() {
 <table><thead><tr><th>Instrument</th><th>Type</th><th>Notional</th><th>Cost</th><th>Effectiveness</th><th>Residual Tail</th></tr></thead>
 <tbody>${hedgeRows}</tbody></table>
 <div class="footer">
-  <span>NARRA v2.4.1 &middot; IBM watsonx Granite &middot; SR 11-7 Compliant</span>
+  <span>CLARA v2.4.1 &middot; IBM watsonx Granite &middot; SR 11-7 Compliant</span>
   <span>Classification: CONFIDENTIAL</span>
 </div>
 </body></html>`;
 
-  downloadBlob(html, `NARRA_report_${timestamp()}.html`, 'text/html');
+  downloadBlob(html, `CLARA_report_${timestamp()}.html`, 'text/html');
 }
 
 export function exportData(format: 'json' | 'csv' | 'html' = 'json') {

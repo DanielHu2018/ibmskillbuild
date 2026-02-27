@@ -1,5 +1,5 @@
 /**
- * NARRA — Run Cycle Modal
+ * CLARA — Run Cycle Modal
  * Animated full cycle execution with real progress steps.
  */
 import { useEffect, useState } from 'react';
@@ -72,24 +72,24 @@ export function RunCycleModal({ onClose }: RunCycleModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="relative w-[560px] rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl shadow-black/60 overflow-hidden">
+      <div className="relative w-[560px] rounded-2xl border border-zinc-700 bg-black shadow-2xl shadow-black/60 overflow-hidden">
 
         {/* Top accent */}
-        <div className="h-1 w-full bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-600" />
+        <div className="h-1 w-full bg-gradient-to-r from-orange-600 via-amber-600 to-purple-600" />
 
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30">
-              <Zap size={16} className={cn('text-cyan-400', !done && 'animate-pulse')} />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/30">
+              <Zap size={16} className={cn('text-orange-400', !done && 'animate-pulse')} />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">NARRA Cycle Running</div>
-              <div className="text-[10px] text-slate-500 font-mono">{cycleId} · {elapsedStr} elapsed</div>
+              <div className="text-sm font-bold text-white">CLARA Cycle Running</div>
+              <div className="text-[10px] text-zinc-500 font-mono">{cycleId} · {elapsedStr} elapsed</div>
             </div>
           </div>
           {done && (
-            <button onClick={onClose} className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-800 hover:text-white transition-colors">
+            <button onClick={onClose} className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-800 hover:text-white transition-colors">
               <X size={14} />
             </button>
           )}
@@ -97,13 +97,13 @@ export function RunCycleModal({ onClose }: RunCycleModalProps) {
 
         {/* Progress bar */}
         <div className="px-6 pt-4">
-          <div className="flex items-center justify-between text-[10px] text-slate-500 mb-1.5">
+          <div className="flex items-center justify-between text-[10px] text-zinc-500 mb-1.5">
             <span>Cycle Progress</span>
-            <span className="font-mono text-cyan-400">{progress}%</span>
+            <span className="font-mono text-orange-400">{progress}%</span>
           </div>
-          <div className="h-2 rounded-full bg-slate-800 overflow-hidden">
+          <div className="h-2 rounded-full bg-zinc-800 overflow-hidden">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-500"
+              className="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-600 transition-all duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -121,33 +121,33 @@ export function RunCycleModal({ onClose }: RunCycleModalProps) {
                 key={step.id}
                 className={cn(
                   'flex items-start gap-3 rounded-xl border px-4 py-3 transition-all duration-300',
-                  isComplete ? 'border-emerald-900/40 bg-emerald-950/15'
-                  : isActive  ? 'border-cyan-800/50 bg-cyan-950/20'
-                  : 'border-slate-800/50 bg-slate-900/20 opacity-40'
+                  isComplete ? 'border-orange-900/40 bg-orange-950/15'
+                  : isActive  ? 'border-orange-800/50 bg-orange-950/20'
+                  : 'border-zinc-800/50 bg-black/20 opacity-40'
                 )}
               >
                 <div className="mt-0.5 shrink-0">
                   {isComplete ? (
-                    <CheckCircle size={15} className="text-emerald-400" />
+                    <CheckCircle size={15} className="text-orange-400" />
                   ) : isActive ? (
-                    <Loader2 size={15} className="text-cyan-400 animate-spin" />
+                    <Loader2 size={15} className="text-orange-400 animate-spin" />
                   ) : (
-                    <div className="h-[15px] w-[15px] rounded-full border-2 border-slate-700" />
+                    <div className="h-[15px] w-[15px] rounded-full border-2 border-zinc-700" />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className={cn(
                     'text-xs font-semibold',
-                    isComplete ? 'text-emerald-300' : isActive ? 'text-cyan-300' : 'text-slate-500'
+                    isComplete ? 'text-orange-300' : isActive ? 'text-orange-300' : 'text-zinc-500'
                   )}>
                     {step.label}
                   </div>
                   {(isActive || isComplete) && (
-                    <div className="text-[10px] text-slate-500 mt-0.5 leading-relaxed">{step.detail}</div>
+                    <div className="text-[10px] text-zinc-500 mt-0.5 leading-relaxed">{step.detail}</div>
                   )}
                 </div>
                 {isComplete && (
-                  <span className="text-[9px] font-mono text-emerald-600 shrink-0">✓ done</span>
+                  <span className="text-[9px] font-mono text-orange-600 shrink-0">✓ done</span>
                 )}
               </div>
             );
@@ -162,16 +162,16 @@ export function RunCycleModal({ onClose }: RunCycleModalProps) {
               <div className="flex-1">
                 <div className="text-xs font-bold text-amber-400 mb-2">Cycle Complete — 4 Breaches Detected</div>
                 <div className="grid grid-cols-3 gap-3 text-[10px]">
-                  <div className="rounded-lg bg-slate-900/60 border border-slate-800 px-3 py-2 text-center">
-                    <div className="text-slate-500 mb-0.5">Events</div>
+                  <div className="rounded-lg bg-black/60 border border-zinc-800 px-3 py-2 text-center">
+                    <div className="text-zinc-500 mb-0.5">Events</div>
                     <div className="text-white font-mono font-bold text-sm">3</div>
                   </div>
-                  <div className="rounded-lg bg-slate-900/60 border border-slate-800 px-3 py-2 text-center">
-                    <div className="text-slate-500 mb-0.5">Shocks</div>
+                  <div className="rounded-lg bg-black/60 border border-zinc-800 px-3 py-2 text-center">
+                    <div className="text-zinc-500 mb-0.5">Shocks</div>
                     <div className="text-white font-mono font-bold text-sm">8</div>
                   </div>
                   <div className="rounded-lg bg-red-900/30 border border-red-800/40 px-3 py-2 text-center">
-                    <div className="text-slate-500 mb-0.5">Breaches</div>
+                    <div className="text-zinc-500 mb-0.5">Breaches</div>
                     <div className="text-red-400 font-mono font-bold text-sm">4</div>
                   </div>
                 </div>
@@ -182,19 +182,19 @@ export function RunCycleModal({ onClose }: RunCycleModalProps) {
 
         {/* Footer */}
         <div className="flex items-center justify-between px-6 pb-5">
-          <div className="flex items-center gap-1.5 text-[10px] text-slate-600">
+          <div className="flex items-center gap-1.5 text-[10px] text-zinc-600">
             <Activity size={10} />
             <span>SR 11-7 Compliant · Full audit trail logged</span>
           </div>
           {done ? (
             <button
               onClick={onClose}
-              className="flex items-center gap-1.5 rounded-lg border border-cyan-700 bg-cyan-950/40 hover:bg-cyan-900/50 px-4 py-2 text-xs font-semibold text-cyan-300 transition-all"
+              className="flex items-center gap-1.5 rounded-lg border border-orange-700 bg-orange-950/40 hover:bg-orange-900/50 px-4 py-2 text-xs font-semibold text-orange-300 transition-all"
             >
               <CheckCircle size={12} /> Close & Review Results
             </button>
           ) : (
-            <div className="text-[10px] text-slate-600 font-mono animate-pulse">Processing…</div>
+            <div className="text-[10px] text-zinc-600 font-mono animate-pulse">Processing…</div>
           )}
         </div>
       </div>
