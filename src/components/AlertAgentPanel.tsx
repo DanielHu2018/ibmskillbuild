@@ -99,7 +99,7 @@ export function AlertAgentPanel({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-bold text-white">CLARA AI Alert Agent</h3>
+              <h3 className="text-sm font-bold text-white">CLARA Alert Agent</h3>
               {unacknowledgedCount > 0 && (
                 <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 text-[9px] font-black text-white px-1 animate-bounce">
                   {unacknowledgedCount}

@@ -98,7 +98,7 @@ function generateResponse(input: string, ctx?: ChatBotProps['portfolioContext'])
   }
 
   if (q.includes('help') || q === 'hi' || q === 'hello' || q === 'hey' || q === '') {
-    return `👋 **Hello! I'm CLARA AI.**\n\nI help you analyze risk, markets, and your portfolio.\n\n**Try asking:**\n• "How is my portfolio doing?"\n• "Analyze NVDA"\n• "What's the current regime?"\n• "Best hedge right now?"\n• "Explain VaR"\n• "Top stocks to buy?"\n• "Recession scenario"\n\nJust type naturally — I understand financial context!`;
+    return `👋 **Hello! I'm CLARA.**\n\nI help you analyze risk, markets, and your portfolio.\n\n**Try asking:**\n• "How is my portfolio doing?"\n• "Analyze NVDA"\n• "What's the current regime?"\n• "Best hedge right now?"\n• "Explain VaR"\n• "Top stocks to buy?"\n• "Recession scenario"\n\nJust type naturally — I understand financial context!`;
   }
 
   return `I understand you're asking about **"${input}"**.\n\nIn the current **Crisis Contagion** regime, all risk factors are amplified **1.85×**. CLARA monitors events, translates narratives to factor shocks, and simulates portfolio impact in real time.\n\nTry asking me about:\n• A specific stock (e.g., "Analyze AAPL")\n• Your portfolio ("How am I doing?")\n• Market conditions ("Current regime?")\n• Risk concepts ("Explain VaR")`;
@@ -142,7 +142,7 @@ export function ChatBot({ portfolioContext, session: _session }: ChatBotProps) {
     {
       id: 'welcome',
       role: 'assistant',
-      content: `👋 **Hello! I'm CLARA AI.**\n\nI'm your institutional risk intelligence assistant. Ask me about your portfolio, market regimes, specific stocks, or risk concepts.\n\nType **"help"** to see everything I can do.`,
+      content: `👋 **Hello! I'm CLARA.**\n\nI'm your institutional risk intelligence assistant. Ask me about your portfolio, market regimes, specific stocks, or risk concepts.\n\nType **"help"** to see everything I can do.`,
       timestamp: new Date(),
     },
   ]);
@@ -192,7 +192,7 @@ export function ChatBot({ portfolioContext, session: _session }: ChatBotProps) {
           onClick={() => setOpen(true)}
           className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl hover:bg-black transition-all duration-300 border-2 border-zinc-600 p-3"
         >
-          <img src="/blackhole-icon.svg" alt="CLARA AI" className="w-full h-full" />
+          <img src="/blackhole-icon.svg" alt="CLARA" className="w-full h-full" />
           {unread > 0 && (
             <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-black text-white animate-pulse">
               {unread}
@@ -212,7 +212,7 @@ export function ChatBot({ portfolioContext, session: _session }: ChatBotProps) {
               </div>
               <div>
                 <div className="text-xs font-bold text-white flex items-center gap-1.5" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>
-                  CLARA AI
+                  CLARA
                   <Sparkles size={10} className="text-zinc-400" />
                 </div>
                 <div className="flex items-center gap-1 text-[9px] text-zinc-500">

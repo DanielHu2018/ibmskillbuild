@@ -1062,13 +1062,13 @@ export function PortfolioRiskPage({ userId, userName: _userName }: { userId: str
                         </div>
                       </div>
 
-                      {/* CLARA AI Thesis */}
+                      {/* CLARA Thesis */}
                       <div>
                         <div className="text-xs font-bold text-white mb-4 flex items-center gap-2">
                           <div className="h-5 w-5 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
                             <Zap size={11} className="text-purple-400" />
                           </div>
-                          CLARA AI Analysis
+                          CLARA Analysis
                         </div>
                         <div className={cn('flex items-center gap-2 rounded-xl border px-4 py-3 mb-4',
                           h.recommendation === 'Strong Hold' ? 'border-orange-800/50 bg-orange-950/30' :

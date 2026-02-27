@@ -44,7 +44,7 @@ export function AuthPage({ onAuth }: AuthPageProps) {
 
   const features = [
     { icon: TrendingUp, label: 'Multiple Portfolios', desc: 'Track and compare unlimited portfolios side-by-side' },
-    { icon: Brain, label: 'AI Chatbot', desc: 'CLARA AI answers your market and risk questions in real time' },
+    { icon: Brain, label: 'AI Chatbot', desc: 'CLARA answers your market and risk questions in real time' },
     { icon: Shield, label: 'Price Alerts', desc: 'Automated email alerts when your targets hit' },
     { icon: Zap, label: 'Live Data', desc: 'Real-time quotes, news feed and Alpha Vantage integration' },
   ];
