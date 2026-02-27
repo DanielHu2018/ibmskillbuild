@@ -39,7 +39,7 @@ export function Sidebar({ activeTab, setActiveTab, session, onSignOut }: Sidebar
         <div>
           <div className="text-base font-bold tracking-wide" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>CLARA</div>
           <div className="text-[10px] font-medium tracking-widest text-zinc-500 uppercase">
-            Risk Reasoning Agent
+            Clairvoyant Loss Avoidance & Risk Advisor
           </div>
         </div>
       </div>

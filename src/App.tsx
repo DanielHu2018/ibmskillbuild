@@ -117,7 +117,7 @@ export function App() {
           {/* Footer */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-black/50 px-3 sm:px-5 py-3">
             <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[10px] text-zinc-500">
-              <span>Pythia v2.4.1</span>
+              <span>Clara v2.4.1</span>
               <span className="hidden sm:inline">•</span>
               <span>IBM watsonx Granite</span>
               <span className="hidden sm:inline">•</span>

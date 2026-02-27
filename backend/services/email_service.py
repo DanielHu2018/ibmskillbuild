@@ -111,7 +111,7 @@ def _build_html_email(
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td>
-                    <p style="margin:0;color:rgba(255,255,255,0.8);font-size:12px;letter-spacing:2px;text-transform:uppercase;">CLARA — Narrative Risk Reasoning Agent</p>
+                    <p style="margin:0;color:rgba(255,255,255,0.8);font-size:12px;letter-spacing:2px;text-transform:uppercase;">CLARA — Clairvoyant Loss Avoidance & Risk Advisor</p>
                     <h1 style="margin:8px 0 0;color:#ffffff;font-size:22px;font-weight:700;">{type_label}</h1>
                   </td>
                   <td align="right">

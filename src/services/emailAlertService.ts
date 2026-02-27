@@ -134,7 +134,7 @@ export async function sendAlertEmail(payload: AlertPayload): Promise<AlertLog> {
     action:         actionText(payload.alertType),
     recommended:    payload.action,
     timestamp:      timestamp.toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' }),
-    CLARA_version:  'CLARA v1.0 · Narrative Risk Reasoning Agent',
+    CLARA_version:  'CLARA v1.0 · Clairvoyant Loss Avoidance & Risk Advisor',
   };
 
   try {
@@ -220,7 +220,7 @@ export async function sendDailySummary(
     action:          `Today's P&L: ${dayGainLoss >= 0 ? '+' : ''}${formatCurrency(dayGainLoss)}. Top movers: ${topStr}`,
     recommended:     'Review your positions and adjust targets as needed.',
     timestamp:       timestamp.toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' }),
-    CLARA_version:   'CLARA v1.0 · Narrative Risk Reasoning Agent',
+    CLARA_version:   'CLARA v1.0 · Clairvoyant Loss Avoidance & Risk Advisor',
   };
 
   try {

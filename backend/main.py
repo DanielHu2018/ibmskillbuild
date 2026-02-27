@@ -1,5 +1,5 @@
 """
-CLARA — Narrative Risk Reasoning Agent
+CLARA — Clairvoyant Loss Avoidance & Risk Advisor
 FastAPI Python Backend
 
 Run with:
@@ -57,7 +57,7 @@ async def lifespan(app: FastAPI):
 
 # ── App ────────────────────────────────────────────────────────────────────────
 app = FastAPI(
-    title="CLARA — Narrative Risk Reasoning Agent",
+    title="CLARA — Clairvoyant Loss Avoidance & Risk Advisor",
     description=(
         "Autonomous institutional scenario engine. "
         "Real-time Narrative-to-factor translation, regime-aware simulation, "

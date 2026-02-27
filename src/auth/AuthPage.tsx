@@ -64,7 +64,7 @@ export function AuthPage({ onAuth }: AuthPageProps) {
             </div>
             <div>
               <div className="text-lg font-black tracking-wide text-white" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>CLARA</div>
-              <div className="text-[10px] font-semibold tracking-widest text-zinc-500 uppercase">Narrative Risk Reasoning Agent</div>
+              <div className="text-[10px] font-semibold tracking-widest text-zinc-500 uppercase">Clairvoyant Loss Avoidance & Risk Advisor</div>
             </div>
           </div>
           <button
@@ -280,7 +280,7 @@ export function AuthPage({ onAuth }: AuthPageProps) {
                   </div>
                   <div>
                     <div className="text-sm font-black text-white" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>CLARA</div>
-                    <div className="text-[9px] text-zinc-600 uppercase tracking-wider">Narrative Risk Reasoning Agent</div>
+                    <div className="text-[9px] text-zinc-600 uppercase tracking-wider">Clairvoyant Loss Avoidance & Risk Advisor</div>
                   </div>
                 </div>
                 <div className="text-xs text-zinc-700 text-center">
@@ -436,7 +436,7 @@ export function AuthPage({ onAuth }: AuthPageProps) {
           </div>
           <div>
             <div className="text-lg font-black tracking-wide text-white" style={{ fontFamily: 'Orbitron, Rajdhani, sans-serif' }}>CLARA</div>
-            <div className="text-[10px] font-semibold tracking-widest text-zinc-500 uppercase">Narrative Risk Reasoning Agent</div>
+            <div className="text-[10px] font-semibold tracking-widest text-zinc-500 uppercase">Clairvoyant Loss Avoidance & Risk Advisor</div>
           </div>
         </div>
 
